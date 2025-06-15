@@ -1,4 +1,4 @@
-#include "iq2020_sniffer.h"
+#include "i2c_sniffer.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
