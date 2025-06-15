@@ -15,6 +15,15 @@ static bool stable_read(uint8_t pin) {
   bool v3 = digitalRead(pin);
   return (v1 == v2) && (v2 == v3);
 }
+void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level, int buffer_size) {
+  if (!global_sniffer) {
+    global_sniffer = new I2CSniffer();
+    global_sniffer->set_pins(sda_pin, scl_pin);
+    global_sniffer->set_log_level(log_level);
+    global_sniffer->set_buffer_size(buffer_size);
+    register_component(global_sniffer);
+  }
+}
 
 void I2CSniffer::setup() {
   pinMode(sda_pin_, INPUT_PULLUP);
