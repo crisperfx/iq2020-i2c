@@ -7,6 +7,15 @@ namespace i2c_sniffer {
 
 static const char *const TAG = "i2c_sniffer";
 
+static bool stable_read(uint8_t pin) {
+  bool v1 = digitalRead(pin);
+  delayMicroseconds(5);
+  bool v2 = digitalRead(pin);
+  delayMicroseconds(5);
+  bool v3 = digitalRead(pin);
+  return (v1 == v2) && (v2 == v3);
+}
+
 void I2CSniffer::setup() {
   pinMode(sda_pin_, INPUT_PULLUP);
   pinMode(scl_pin_, INPUT_PULLUP);
