@@ -5,8 +5,6 @@
 namespace esphome {
 namespace i2c_sniffer {
 
-void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level = 3, int buffer_size = 16);
-
 class I2CSniffer : public Component {
  public:
   void setup() override;
@@ -23,10 +21,11 @@ class I2CSniffer : public Component {
     this->buffer_size_ = size;
   }
 
-
  protected:
   int sda_pin_ = 25;
   int scl_pin_ = 21;
+  int log_level_ = 3;
+  int buffer_size_ = 16;
 
   bool prev_sda_ = true;
   bool prev_scl_ = true;
