@@ -3,6 +3,9 @@
 namespace esphome {
 namespace i2c_sniffer {
 
+static const uint8_t SDA_PIN = 25;
+static const uint8_t SCL_PIN = 21;
+
 class I2CSniffer : public Component {
  public:
   void setup() override;
