@@ -12,10 +12,17 @@ class I2CSniffer : public Component {
   void setup() override;
   void loop() override;
 
-  void set_pins(int sda_pin, int scl_pin) {
-    sda_pin_ = sda_pin;
-    scl_pin_ = scl_pin;
+  void set_pins(int sda, int scl) {
+    this->sda_pin_ = sda;
+    this->scl_pin_ = scl;
   }
+  void set_log_level(int level) {
+    this->log_level_ = level;
+  }
+  void set_buffer_size(int size) {
+    this->buffer_size_ = size;
+  }
+
 
  protected:
   int sda_pin_ = 25;
