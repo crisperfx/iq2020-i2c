@@ -1,4 +1,4 @@
-name: "I2C Sniffer"
+name: "i2c_sniffer"
 description: "ESPHome component to sniff IQ2020 I2C traffic"
 files:
   - i2c_sniffer.h
