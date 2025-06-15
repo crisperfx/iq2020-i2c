@@ -1,6 +1,7 @@
 #include "i2c_sniffer.h"
 #include "esphome/core/log.h"
-#include <Arduino.h>
+#include "esphome/core/helpers.h"
+#include "Arduino.h"
 
 namespace esphome {
 namespace i2c_sniffer {
@@ -20,49 +21,45 @@ uint8_t byte_buf = 0;
 bool receiving = false;
 
 void I2CSniffer::setup() {
-  pinMode(SDA_PIN, INPUT_PULLUP);
-  pinMode(SCL_PIN, INPUT_PULLUP);
-  ESP_LOGI(TAG, "I2C Sniffer started");
-  prev_sda = digitalRead(SDA_PIN);
-  prev_scl = digitalRead(SCL_PIN);
+  pinMode(this->sda_pin_, INPUT_PULLUP);
+  pinMode(this->scl_pin_, INPUT_PULLUP);
+  ESP_LOGI(TAG, "I2C sniffer setup complete on SDA pin %d and SCL pin %d", sda_pin_, scl_pin_);
 }
 
 void I2CSniffer::loop() {
-  bool sda = digitalRead(SDA_PIN);
-  bool scl = digitalRead(SCL_PIN);
-  ESP_LOGI(TAG, "SDA: %d, SCL: %d", sda, scl);
+  static bool prev_scl = true;
+  static uint8_t bit_count = 0;
+  static uint8_t current_byte = 0;
 
-  // Detect start condition: SDA gaat laag terwijl SCL hoog is
-  if (prev_sda == true && sda == false && scl == true) {
-    ESP_LOGI(TAG, "Start condition detected");
-    receiving = true;
-    bit_count = 0;
-    byte_buf = 0;
-  }
+  bool sda = digitalRead(this->sda_pin_);
+  bool scl = digitalRead(this->scl_pin_);
 
-  // Detect stop condition: SDA gaat hoog terwijl SCL hoog is
-  if (prev_sda == false && sda == true && scl == true) {
-    ESP_LOGI(TAG, "Stop condition detected");
-    receiving = false;
-  }
-
-  // Als we data ontvangen: lees bits op stijgende flank van SCL
-  if (receiving && prev_scl == false && scl == true) {
-    // Shift in de SDA bit
-    byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
+  if (prev_scl == false && scl == true) {
+    // Rising edge detected → tijd om SDA te lezen
+    current_byte = (current_byte << 1) | (sda ? 1 : 0);
     bit_count++;
 
     if (bit_count == 8) {
-      ESP_LOGI(TAG, "Byte received: 0x%02X", byte_buf);
+      ESP_LOGI(TAG, "Byte received: 0x%02X", current_byte);
       bit_count = 0;
-      byte_buf = 0;
-      // Hier kan je wachten op ACK bit (9e bit), maar dat wordt iets complexer
+      current_byte = 0;
     }
   }
 
-  prev_sda = sda;
+  // Start condition: SDA daalt terwijl SCL hoog is
+  if (scl && prev_sda_ && !sda) {
+    ESP_LOGI(TAG, "Start condition detected");
+  }
+
+  // Stop condition: SDA stijgt terwijl SCL hoog is
+  if (scl && !prev_sda_ && sda) {
+    ESP_LOGI(TAG, "Stop condition detected");
+  }
+
   prev_scl = scl;
+  prev_sda_ = sda;
 }
+
 
 }  // namespace i2c_sniffer
 }  // namespace esphome
