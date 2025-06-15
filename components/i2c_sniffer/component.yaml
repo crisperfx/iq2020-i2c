@@ -4,11 +4,17 @@ files:
   - i2c_sniffer.h
   - i2c_sniffer.cpp
 includes:
-  - "."
-parameters:
-  sda_pin:
-    int: true
-    default: 25
-  scl_pin:
-    int: true
-    default: 21
+  - .
+variables:
+  - name: sda_pin
+    type: int
+  - name: scl_pin
+    type: int
+  - name: log_level
+    type: int
+    default: 2
+  - name: buffer_size
+    type: int
+    default: 0
+register: |-
+  ::esphome::i2c_sniffer::register_i2c_sniffer(sda_pin, scl_pin, log_level, buffer_size);
