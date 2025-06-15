@@ -38,7 +38,13 @@ void I2CSniffer::setup() {
   prev_sda_ = digitalRead(sda_pin_);
   prev_scl_ = digitalRead(scl_pin_);
 }
-
+void publish_buffer() {
+  std::string combined;
+  for (const auto &line : buffer_) {
+    combined += line + "\n";
+  }
+  this->publish_state(combined);  // via text_sensor
+}
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
