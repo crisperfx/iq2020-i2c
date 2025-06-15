@@ -94,6 +94,13 @@ void I2CSniffer::loop() {
         ack_bit_expected_ = true;  // verwacht nu ACK bit
       }
     }
+    if (buffer_sensor_ != nullptr) {
+    // Stel dat je je buffer als std::string hebt:
+    std::string buffer_str = ...;  // vul dit met actuele data
+
+    // update de text sensor (converteer naar std::string)
+    buffer_sensor_->publish_state(buffer_str);
+  }
     static uint32_t last_publish = 0;
     if (millis() - last_publish > 2000) {
       last_publish = millis();
