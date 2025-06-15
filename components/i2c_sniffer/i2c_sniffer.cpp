@@ -10,15 +10,19 @@ static const char *const TAG = "i2c_sniffer";
 #define SDA_PIN 25
 #define SCL_PIN 21
 
+// Houd vorige pinwaarden bij
 bool prev_sda = true;
 bool prev_scl = true;
 
+// Buffers
 uint8_t bit_count = 0;
 uint8_t byte_buf = 0;
 bool receiving = false;
-bool ack_phase = false;
-bool expect_address = false;
-bool is_read_operation = false;
+
+// Voor check constant high line (pull-up check)
+unsigned long last_change_time_sda = 0;
+unsigned long last_change_time_scl = 0;
+const unsigned long timeout_ms = 1000;  // 1 seconde
 
 void I2CSniffer::setup() {
   pinMode(SDA_PIN, INPUT_PULLUP);
@@ -26,56 +30,60 @@ void I2CSniffer::setup() {
   ESP_LOGI(TAG, "I2C Sniffer started");
   prev_sda = digitalRead(SDA_PIN);
   prev_scl = digitalRead(SCL_PIN);
+  last_change_time_sda = millis();
+  last_change_time_scl = millis();
 }
 
 void I2CSniffer::loop() {
   bool sda = digitalRead(SDA_PIN);
   bool scl = digitalRead(SCL_PIN);
 
-  // Detecteer startconditie
+  // Detect verandering SDA
+  if (sda != prev_sda) {
+    ESP_LOGI(TAG, "SDA changed from %d to %d", prev_sda, sda);
+    last_change_time_sda = millis();
+  }
+
+  // Detect verandering SCL
+  if (scl != prev_scl) {
+    ESP_LOGI(TAG, "SCL changed from %d to %d", prev_scl, scl);
+    last_change_time_scl = millis();
+  }
+
+  // Check of SDA lang constant hoog blijft
+  if (sda == true && millis() - last_change_time_sda > timeout_ms) {
+    ESP_LOGW(TAG, "SDA line constant HIGH for more than %d ms. Check pull-ups and wiring!", timeout_ms);
+  }
+
+  // Check of SCL lang constant hoog blijft
+  if (scl == true && millis() - last_change_time_scl > timeout_ms) {
+    ESP_LOGW(TAG, "SCL line constant HIGH for more than %d ms. Check pull-ups and wiring!", timeout_ms);
+  }
+
+  // Detect start condition: SDA gaat van hoog naar laag terwijl SCL hoog is
   if (prev_sda == true && sda == false && scl == true) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving = true;
     bit_count = 0;
     byte_buf = 0;
-    expect_address = true;
-    ack_phase = false;
   }
 
-  // Detecteer stopconditie
+  // Detect stop condition: SDA gaat van laag naar hoog terwijl SCL hoog is
   if (prev_sda == false && sda == true && scl == true) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving = false;
   }
 
-  // Verwerk bit op stijgende flank van SCL
+  // Als we data ontvangen: lees bits op stijgende flank van SCL
   if (receiving && prev_scl == false && scl == true) {
-    if (!ack_phase) {
-      // Verzamel bits in byte_buf
-      byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
-      bit_count++;
+    byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
+    bit_count++;
 
-      if (bit_count == 8) {
-        if (expect_address) {
-          uint8_t address = byte_buf >> 1;
-          is_read_operation = byte_buf & 0x01;
-          ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, is_read_operation ? "read (master ← slave)" : "write (master → slave)");
-          expect_address = false;
-        } else {
-          ESP_LOGI(TAG, "Data byte: 0x%02X (%s)", byte_buf, is_read_operation ? "slave → master" : "master → slave");
-        }
-        ack_phase = true;
-        bit_count = 0;
-      }
-    } else {
-      // 9e bit = ACK/NACK
-      if (sda == 0) {
-        ESP_LOGI(TAG, "ACK received");
-      } else {
-        ESP_LOGI(TAG, "NACK received");
-      }
-      ack_phase = false;
+    if (bit_count == 8) {
+      ESP_LOGI(TAG, "Byte received: 0x%02X", byte_buf);
+      bit_count = 0;
       byte_buf = 0;
+      // ACK bit wordt niet gecontroleerd in deze simpele versie
     }
   }
 
