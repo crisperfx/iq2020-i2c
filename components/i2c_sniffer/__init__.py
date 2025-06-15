@@ -32,5 +32,5 @@ async def to_code(config):
     if CONF_BUFFER_SIZE in config:
         cg.add(sniffer.set_buffer_size(config[CONF_BUFFER_SIZE]))
     if CONF_BUFFER_SENSOR in config:
-        buffer_sensor = await cg.get_variable(config[CONF_BUFFER_SENSOR]['id'])
+        buffer_sensor = await cg.get_variable(config[CONF_BUFFER_SENSOR])
         cg.add(sniffer.set_buffer_sensor(buffer_sensor))
