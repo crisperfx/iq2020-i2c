@@ -37,59 +37,57 @@ void I2CSniffer::setup() {
 void I2CSniffer::loop() {
   bool sda = digitalRead(SDA_PIN);
   bool scl = digitalRead(SCL_PIN);
+  ESP_LOGI(TAG, "SDA: %d, SCL: %d", sda, scl);
 
-  // Detect verandering SDA
-  if (sda != prev_sda) {
-    ESP_LOGI(TAG, "SDA changed from %d to %d", prev_sda, sda);
-    last_change_time_sda = millis();
-  }
-
-  // Detect verandering SCL
-  if (scl != prev_scl) {
-    ESP_LOGI(TAG, "SCL changed from %d to %d", prev_scl, scl);
-    last_change_time_scl = millis();
-  }
-
-  // Check of SDA lang constant hoog blijft
-  if (sda == true && millis() - last_change_time_sda > timeout_ms) {
-    ESP_LOGW(TAG, "SDA line constant HIGH for more than %d ms. Check pull-ups and wiring!", timeout_ms);
-  }
-
-  // Check of SCL lang constant hoog blijft
-  if (scl == true && millis() - last_change_time_scl > timeout_ms) {
-    ESP_LOGW(TAG, "SCL line constant HIGH for more than %d ms. Check pull-ups and wiring!", timeout_ms);
-  }
-
-  // Detect start condition: SDA gaat van hoog naar laag terwijl SCL hoog is
+  // Detect start condition
   if (prev_sda == true && sda == false && scl == true) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving = true;
+    receiving_address = true;  // volgende byte is adres
     bit_count = 0;
     byte_buf = 0;
   }
 
-  // Detect stop condition: SDA gaat van laag naar hoog terwijl SCL hoog is
+  // Detect stop condition
   if (prev_sda == false && sda == true && scl == true) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving = false;
   }
 
-  // Als we data ontvangen: lees bits op stijgende flank van SCL
   if (receiving && prev_scl == false && scl == true) {
+    // Bits inlezen
     byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
     bit_count++;
 
     if (bit_count == 8) {
-      ESP_LOGI(TAG, "Byte received: 0x%02X", byte_buf);
+      // 8 bits gelezen = 1 byte
+      if (receiving_address) {
+        // Adresbyte: hoogste 7 bits adres, laagste bit R/W
+        uint8_t address = byte_buf >> 1;
+        bool rw = byte_buf & 1;
+        ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, rw ? "read (master ← slave)" : "write (master → slave)");
+        receiving_address = false;
+      } else {
+        ESP_LOGI(TAG, "Data byte: 0x%02X", byte_buf);
+      }
       bit_count = 0;
       byte_buf = 0;
-      // ACK bit wordt niet gecontroleerd in deze simpele versie
+      ack_bit_expected = true;  // 9e bit is ACK/NACK
+    }
+    else if (bit_count == 9 && ack_bit_expected) {
+      // ACK bit lezen (1 = NACK, 0 = ACK)
+      ESP_LOGI(TAG, "ACK bit: %d (%s)", sda ? 1 : 0, sda ? "NACK" : "ACK");
+      ack_bit_expected = false;
+      // Als ACK is, volgende byte is data, anders mogelijk stop condition
+      if (!receiving_address) {
+        // Na data byte weer data bytes verwacht
+        // receiving_address blijft false, want adres was al binnen
+      }
     }
   }
 
   prev_sda = sda;
   prev_scl = scl;
 }
-
 }  // namespace i2c_sniffer
 }  // namespace esphome
