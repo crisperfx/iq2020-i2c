@@ -1,24 +1,12 @@
-#include "i2c_sniffer.h"
 #include "esphome/core/log.h"
 #include "esphome/core/helpers.h"
+#include "i2c_sniffer.h"
 #include "Arduino.h"
 
 namespace esphome {
 namespace i2c_sniffer {
 
 static const char *const TAG = "i2c_sniffer";
-
-#define SDA_PIN 25
-#define SCL_PIN 21
-
-// Houd vorige pinwaarden bij
-bool prev_sda = true;
-bool prev_scl = true;
-
-// Buffers
-uint8_t bit_count = 0;
-uint8_t byte_buf = 0;
-bool receiving = false;
 
 void I2CSniffer::setup() {
   pinMode(this->sda_pin_, INPUT_PULLUP);
@@ -34,8 +22,8 @@ void I2CSniffer::loop() {
   bool sda = digitalRead(this->sda_pin_);
   bool scl = digitalRead(this->scl_pin_);
 
-  if (prev_scl == false && scl == true) {
-    // Rising edge detected → tijd om SDA te lezen
+  // Rising edge of SCL: sample SDA
+  if (!prev_scl && scl) {
     current_byte = (current_byte << 1) | (sda ? 1 : 0);
     bit_count++;
 
@@ -46,20 +34,19 @@ void I2CSniffer::loop() {
     }
   }
 
-  // Start condition: SDA daalt terwijl SCL hoog is
-  if (scl && prev_sda_ && !sda) {
+  // Start condition: SDA falling while SCL is high
+  if (scl && this->prev_sda_ && !sda) {
     ESP_LOGI(TAG, "Start condition detected");
   }
 
-  // Stop condition: SDA stijgt terwijl SCL hoog is
-  if (scl && !prev_sda_ && sda) {
+  // Stop condition: SDA rising while SCL is high
+  if (scl && !this->prev_sda_ && sda) {
     ESP_LOGI(TAG, "Stop condition detected");
   }
 
   prev_scl = scl;
-  prev_sda_ = sda;
+  this->prev_sda_ = sda;
 }
-
 
 }  // namespace i2c_sniffer
 }  // namespace esphome
