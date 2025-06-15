@@ -2,6 +2,7 @@
 #include "esphome/core/log.h"
 #include "esphome/core/component.h"
 #include "esphome/core/application.h"
+#include "esphome/components/text_sensor/text_sensor.h"
 #include <Arduino.h>
 
 namespace esphome {
@@ -39,14 +40,21 @@ void I2CSniffer::setup() {
   prev_scl_ = digitalRead(scl_pin_);
 }
 void I2CSniffer::publish_buffer() {
+  std::string buffer_str;
+
+  // Voeg hier jouw echte bufferdata toe. Bijvoorbeeld:
+  for (const auto &line : this->buffer_) {
+    buffer_str += line + "\n";
+  }
+
   if (this->buffer_sensor_ != nullptr) {
-   this->buffer_sensor_->publish_state(output);
+    this->buffer_sensor_->publish_state(buffer_str);
+    ESP_LOGI("i2c_sniffer", "Publishing buffer: %s", buffer_str.c_str());
   }
 }
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
-  ESP_LOGI("i2c_sniffer", "Publishing buffer: %s", output.c_str());
 
   // Detect start condition (SDA goes low while SCL high)
   if (prev_sda_ && !sda && scl) {
