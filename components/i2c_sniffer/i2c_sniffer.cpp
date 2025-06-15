@@ -46,6 +46,7 @@ void I2CSniffer::publish_buffer() {
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
+  ESP_LOGI("i2c_sniffer", "Publishing buffer: %s", output.c_str());
 
   // Detect start condition (SDA goes low while SCL high)
   if (prev_sda_ && !sda && scl) {
