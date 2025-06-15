@@ -1,1 +1,5 @@
-
+name: "I2C Sniffer"
+description: "Sniff I2C communication from IQ2020 hot tub"
+files:
+  - i2c_sniffer.h
+  - i2c_sniffer.cpp
