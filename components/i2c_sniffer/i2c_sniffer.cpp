@@ -38,12 +38,15 @@ void I2CSniffer::setup() {
   prev_sda_ = digitalRead(sda_pin_);
   prev_scl_ = digitalRead(scl_pin_);
 }
-void publish_buffer() {
-  std::string combined;
+void I2CSniffer::publish_buffer() {
+  if (this->text_sensor_ == nullptr) return;
+
+  std::string output;
   for (const auto &line : buffer_) {
-    combined += line + "\n";
+    output += line + "\n";
   }
-  this->publish_state(combined);  // via text_sensor
+
+  this->text_sensor_->publish_state(output);
 }
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
@@ -95,6 +98,11 @@ void I2CSniffer::loop() {
         ack_bit_expected_ = true;  // verwacht nu ACK bit
       }
     }
+    static uint32_t last_publish = 0;
+    if (millis() - last_publish > 2000) {
+      last_publish = millis();
+      this->publish_buffer();
+  }
   }
 
   prev_sda_ = sda;
