@@ -12,6 +12,7 @@ CONF_SDA_PIN = "sda_pin"
 CONF_SCL_PIN = "scl_pin"
 CONF_LOG_LEVEL = "log_level"
 CONF_BUFFER_SIZE = "buffer_size"
+CONF_BUFFER_SENSOR = "buffer_sensor"
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(I2CSniffer),
@@ -19,21 +20,17 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Required(CONF_SCL_PIN): cv.int_,
     cv.Optional(CONF_LOG_LEVEL, default=2): cv.int_,  # 0=ERROR,1=WARN,2=INFO,3=DEBUG
     cv.Optional(CONF_BUFFER_SIZE, default=16): cv.positive_int,
-    cv.Optional("buffer_sensor"): text_sensor.text_sensor_schema(),
+    cv.Optional(CONF_BUFFER_SENSOR): text_sensor.text_sensor_schema(),
 }).extend(cv.COMPONENT_SCHEMA)
 
 async def to_code(config):
     sniffer = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(sniffer, config)
-
     cg.add(sniffer.set_pins(config[CONF_SDA_PIN], config[CONF_SCL_PIN]))
-
     if CONF_LOG_LEVEL in config:
         cg.add(sniffer.set_log_level(config[CONF_LOG_LEVEL]))
-
     if CONF_BUFFER_SIZE in config:
         cg.add(sniffer.set_buffer_size(config[CONF_BUFFER_SIZE]))
-
-    if "buffer_sensor" in config:
-        sens = await text_sensor.new_text_sensor(config["buffer_sensor"])
-        cg.add(sniffer.set_text_sensor(sens))
+    if CONF_BUFFER_SENSOR in config:
+        sens = await cg.get_variable(config[CONF_BUFFER_SENSOR])
+        cg.add(sniffer.set_buffer_sensor(sens))
