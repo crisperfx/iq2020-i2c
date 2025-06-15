@@ -7,16 +7,6 @@ namespace i2c_sniffer {
 
 static const char *const TAG = "i2c_sniffer";
 
-I2CSniffer *global_sniffer = nullptr;
-
-void register_i2c_sniffer(int sda_pin, int scl_pin) {
-  if (!global_sniffer) {
-    global_sniffer = new I2CSniffer();
-    global_sniffer->set_pins(sda_pin, scl_pin);
-    register_component(global_sniffer);
-  }
-}
-
 void I2CSniffer::setup() {
   pinMode(sda_pin_, INPUT_PULLUP);
   pinMode(scl_pin_, INPUT_PULLUP);
