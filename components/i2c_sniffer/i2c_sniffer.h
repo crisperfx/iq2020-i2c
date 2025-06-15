@@ -1,6 +1,7 @@
 #pragma once
 
 #include "esphome/core/component.h"
+#include "esphome/components/text_sensor/text_sensor.h"
 
 namespace esphome {
 namespace i2c_sniffer {
