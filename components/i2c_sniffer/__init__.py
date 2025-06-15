@@ -14,8 +14,8 @@ CONF_BUFFER_SIZE = "buffer_size"
 
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(I2CSniffer),
-    cv.Required(CONF_SDA_PIN): gpio.gpio_input_pin_schema,
-    cv.Required(CONF_SCL_PIN): gpio.gpio_input_pin_schema,
+    cv.Required(CONF_SDA_PIN): cv.int_,
+    cv.Required(CONF_SCL_PIN): cv.int_,
     cv.Optional(CONF_LOG_LEVEL, default=2): cv.int_,  # 0=ERROR,1=WARN,2=INFO,3=DEBUG
     cv.Optional(CONF_BUFFER_SIZE, default=16): cv.positive_int,
 }).extend(cv.COMPONENT_SCHEMA)
