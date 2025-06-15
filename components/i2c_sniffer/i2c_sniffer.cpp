@@ -11,39 +11,41 @@ void I2CSniffer::setup() {
   pinMode(SDA_PIN, INPUT_PULLUP);
   pinMode(SCL_PIN, INPUT_PULLUP);
   ESP_LOGI(TAG, "I2C Sniffer started");
-
   prev_sda = digitalRead(SDA_PIN);
   prev_scl = digitalRead(SCL_PIN);
+  receiving = false;
+  receiving_address = false;
+  ack_bit_expected = false;
+  bit_count = 0;
+  byte_buf = 0;
 }
 
 void I2CSniffer::loop() {
   bool sda = digitalRead(SDA_PIN);
   bool scl = digitalRead(SCL_PIN);
 
-  // Detect start condition: SDA gaat van hoog naar laag terwijl SCL hoog is
-  if (prev_sda == true && sda == false && scl == true) {
+  // Detect start condition (SDA hoog->laag terwijl SCL hoog)
+  if (prev_sda && !sda && scl) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving = true;
-    receiving_address = true;  // Nu komt adresbyte
+    receiving_address = true;
     bit_count = 0;
     byte_buf = 0;
     ack_bit_expected = false;
   }
 
-  // Detect stop condition: SDA gaat van laag naar hoog terwijl SCL hoog is
-  if (prev_sda == false && sda == true && scl == true) {
+  // Detect stop condition (SDA laag->hoog terwijl SCL hoog)
+  if (!prev_sda && sda && scl) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving = false;
   }
 
-  if (receiving && prev_scl == false && scl == true) {  // stijgende flank SCL
+  if (receiving && !prev_scl && scl) {  // stijgende flank SCL
     if (ack_bit_expected) {
       ESP_LOGI(TAG, "ACK bit: %d", sda ? 1 : 0);
       ack_bit_expected = false;
-
-      // Na adres + ack: nu data bytes volgen
       if (receiving_address) {
-        receiving_address = false;
+        receiving_address = false;  // daarna volgen data bytes
       }
     } else {
       byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
@@ -59,7 +61,7 @@ void I2CSniffer::loop() {
         }
         bit_count = 0;
         byte_buf = 0;
-        ack_bit_expected = true;  // volgend bit is ACK
+        ack_bit_expected = true;
       }
     }
   }
