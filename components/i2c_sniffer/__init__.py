@@ -3,6 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import logger
 from esphome.const import CONF_ID
 from esphome.components import gpio
+from esphome.components import text_sensor
 
 i2c_sniffer_ns = cg.esphome_ns.namespace('i2c_sniffer')
 I2CSniffer = i2c_sniffer_ns.class_('I2CSniffer', cg.Component)
@@ -12,12 +13,17 @@ CONF_SCL_PIN = "scl_pin"
 CONF_LOG_LEVEL = "log_level"
 CONF_BUFFER_SIZE = "buffer_size"
 
+if 'buffer_sensor' in config:
+    sens = await text_sensor.new_text_sensor(config['buffer_sensor'])
+    cg.add(sniffer.set_text_sensor(sens))
+    
 CONFIG_SCHEMA = cv.Schema({
     cv.GenerateID(): cv.declare_id(I2CSniffer),
     cv.Required(CONF_SDA_PIN): cv.int_,
     cv.Required(CONF_SCL_PIN): cv.int_,
     cv.Optional(CONF_LOG_LEVEL, default=2): cv.int_,  # 0=ERROR,1=WARN,2=INFO,3=DEBUG
     cv.Optional(CONF_BUFFER_SIZE, default=16): cv.positive_int,
+    cv.Optional("buffer_sensor"): text_sensor.text_sensor_schema(),
 }).extend(cv.COMPONENT_SCHEMA)
 
 async def to_code(config):
