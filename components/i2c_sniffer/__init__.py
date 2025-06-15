@@ -20,7 +20,7 @@ CONFIG_SCHEMA = cv.Schema({
     cv.Required(CONF_SCL_PIN): cv.int_,
     cv.Optional(CONF_LOG_LEVEL, default=2): cv.int_,  # 0=ERROR,1=WARN,2=INFO,3=DEBUG
     cv.Optional(CONF_BUFFER_SIZE, default=16): cv.positive_int,
-    cv.Optional(CONF_BUFFER_SENSOR): text_sensor.text_sensor_schema(),
+    cv.Optional(CONF_BUFFER_SENSOR): cv.use_id(text_sensor.TextSensor),
 }).extend(cv.COMPONENT_SCHEMA)
 
 async def to_code(config):
