@@ -32,7 +32,7 @@ void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level, int buffer_si
 void I2CSniffer::setup() {
   pinMode(sda_pin_, INPUT_PULLUP);
   pinMode(scl_pin_, INPUT_PULLUP);
-  ESP_LOGI(TAG, "I2C Sniffer started (SDA=%d, SCL=%d)", sda_pin_, scl_pin_);
+  ESP_LOGCONFIG("i2c_sniffer", "I2C Sniffer setup: SDA=%d, SCL=%d", sda_pin_, scl_pin_);
 
   prev_sda_ = digitalRead(sda_pin_);
   prev_scl_ = digitalRead(scl_pin_);
