@@ -115,8 +115,8 @@ void I2CSniffer::loop() {
         buffer_.push_back(byte_str);
 
         // Beperk buffer grootte
-        if (buffer_.size() > max_buffer_size_)
-          buffer_.erase(buffer_.begin());
+        if (buffer_.size() > buffer_size_)
+          buffer_.pop_front();  // net iets netter voor deque
 
         if (receiving_address_) {
           uint8_t address = byte_buf_ >> 1;
