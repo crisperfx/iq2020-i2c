@@ -1,5 +1,6 @@
 #include "i2c_sniffer.h"
 #include "esphome/core/log.h"
+#include <Arduino.h>  // ← nodig voor pinMode, digitalRead, INPUT_PULLUP
 
 namespace esphome {
 namespace i2c_sniffer {
