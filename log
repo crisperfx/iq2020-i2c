@@ -2,113 +2,1741 @@ INFO ESPHome 2025.5.2
 INFO Reading configuration /config/esphome/jacuzzi.yaml...
 INFO Updating https://github.com/crisperfx/iq2020-i2c.git@None
 INFO Starting log output from 192.168.0.168 using esphome API
-INFO Successfully connected to jacuzzi @ 192.168.0.168 in 0.152s
-INFO Successful handshake with jacuzzi @ 192.168.0.168 in 0.101s
-[19:48:02][I][app:115]: ESPHome version 2025.5.2 compiled on Jun 15 2025, 19:46:16
-[19:48:02][C][wifi:600]: WiFi:
-[19:48:02][C][wifi:428]:   Local MAC: F4:65:0B:07:A3:A8
-[19:48:02][C][wifi:433]:   SSID: 'Telenet7111677'[redacted]
-[19:48:02][C][wifi:436]:   IP Address: 192.168.0.168
-[19:48:02][C][wifi:440]:   BSSID: 1E:55:70:B4:A2:19[redacted]
-[19:48:02][C][wifi:441]:   Hostname: 'jacuzzi'
-[19:48:02][C][wifi:443]:   Signal strength: -66 dB ▂▄▆█
-[19:48:02][C][wifi:447]:   Channel: 6
-[19:48:02][C][wifi:448]:   Subnet: 255.255.255.0
-[19:48:02][C][wifi:449]:   Gateway: 192.168.0.1
-[19:48:02][C][wifi:450]:   DNS1: 195.130.130.5
-[19:48:02][C][wifi:451]:   DNS2: 195.130.131.5
-[19:48:02][C][logger:224]: Logger:
-[19:48:02][C][logger:225]:   Max Level: DEBUG
-[19:48:02][C][logger:226]:   Initial Level: DEBUG
-[19:48:02][C][logger:228]:   Log Baud Rate: 0
-[19:48:02][C][template.text_sensor:020]: Template Sensor 'I2C Sniffer Output'
-[19:48:02][C][mdns:120]: mDNS:
-[19:48:02][C][mdns:121]:   Hostname: jacuzzi
-[19:48:02][C][esphome.ota:073]: Over-The-Air updates:
-[19:48:02][C][esphome.ota:074]:   Address: jacuzzi.local:3232
-[19:48:02][C][esphome.ota:075]:   Version: 2
-[19:48:02][C][esphome.ota:078]:   Password configured
-[19:48:02][C][safe_mode:018]: Safe Mode:
-[19:48:02][C][safe_mode:020]:   Boot considered successful after 60 seconds
-[19:48:02][C][safe_mode:021]:   Invoke after 10 boot attempts
-[19:48:02][C][safe_mode:023]:   Remain in safe mode for 300 seconds
-[19:48:02][C][api:170]: API Server:
-[19:48:02][C][api:171]:   Address: jacuzzi.local:6053
-[19:48:02][C][api:173]:   Using noise encryption: YES
-[19:48:03][I][i2c_sniffer:057]: Start condition detected
-[19:48:03][I][i2c_sniffer:067]: Stop condition detected
-[19:48:04][I][i2c_sniffer:057]: Start condition detected
-[19:48:04][I][i2c_sniffer:067]: Stop condition detected
-[19:48:04][I][i2c_sniffer:067]: Stop condition detected
-[19:48:04][I][i2c_sniffer:057]: Start condition detected
-[19:48:04][I][i2c_sniffer:067]: Stop condition detected
-[19:48:04][I][i2c_sniffer:057]: Start condition detected
-[19:48:04][I][i2c_sniffer:067]: Stop condition detected
-[19:48:05][I][i2c_sniffer:057]: Start condition detected
-[19:48:05][I][i2c_sniffer:067]: Stop condition detected
-[19:48:06][I][i2c_sniffer:057]: Start condition detected
-[19:48:06][I][i2c_sniffer:067]: Stop condition detected
-[19:48:08][I][i2c_sniffer:057]: Start condition detected
-[19:48:08][I][i2c_sniffer:067]: Stop condition detected
-[19:48:08][I][i2c_sniffer:067]: Stop condition detected
-[19:48:08][I][i2c_sniffer:057]: Start condition detected
-[19:48:08][I][i2c_sniffer:067]: Stop condition detected
-[19:48:09][I][i2c_sniffer:067]: Stop condition detected
-[19:48:09][I][i2c_sniffer:057]: Start condition detected
-[19:48:09][D][text_sensor:064]: 'I2C Sniffer Output': Sending state ''
-[19:48:09][I][i2c_sniffer:067]: Stop condition detected
-[19:48:09][I][i2c_sniffer:067]: Stop condition detected
-[19:48:10][I][i2c_sniffer:057]: Start condition detected
-[19:48:10][I][i2c_sniffer:067]: Stop condition detected
-[19:48:10][I][i2c_sniffer:057]: Start condition detected
-[19:48:10][I][i2c_sniffer:057]: Start condition detected
-[19:48:10][I][i2c_sniffer:067]: Stop condition detected
-[19:48:10][I][i2c_sniffer:057]: Start condition detected
-[19:48:10][I][i2c_sniffer:067]: Stop condition detected
-[19:48:11][I][i2c_sniffer:067]: Stop condition detected
-[19:48:11][I][i2c_sniffer:057]: Start condition detected
-[19:48:11][I][i2c_sniffer:057]: Start condition detected
-[19:48:11][I][i2c_sniffer:067]: Stop condition detected
-[19:48:12][I][i2c_sniffer:067]: Stop condition detected
-[19:48:13][I][i2c_sniffer:057]: Start condition detected
-[19:48:13][I][i2c_sniffer:067]: Stop condition detected
-[19:48:13][I][i2c_sniffer:057]: Start condition detected
-[19:48:13][I][i2c_sniffer:067]: Stop condition detected
-[19:48:14][I][i2c_sniffer:067]: Stop condition detected
-[19:48:14][I][i2c_sniffer:057]: Start condition detected
-[19:48:14][D][text_sensor:064]: 'I2C Sniffer Output': Sending state ''
-[19:48:14][I][i2c_sniffer:067]: Stop condition detected
-[19:48:14][I][i2c_sniffer:067]: Stop condition detected
-[19:48:14][I][i2c_sniffer:057]: Start condition detected
-[19:48:14][I][i2c_sniffer:067]: Stop condition detected
-[19:48:14][I][i2c_sniffer:057]: Start condition detected
-[19:48:14][I][i2c_sniffer:067]: Stop condition detected
-[19:48:15][I][i2c_sniffer:057]: Start condition detected
-[19:48:15][I][i2c_sniffer:067]: Stop condition detected
-[19:48:15][I][i2c_sniffer:057]: Start condition detected
-[19:48:15][I][i2c_sniffer:067]: Stop condition detected
-[19:48:16][I][i2c_sniffer:057]: Start condition detected
-[19:48:16][I][i2c_sniffer:067]: Stop condition detected
-[19:48:16][I][i2c_sniffer:067]: Stop condition detected
-[19:48:17][I][i2c_sniffer:067]: Stop condition detected
-[19:48:17][I][i2c_sniffer:057]: Start condition detected
-[19:48:17][I][i2c_sniffer:067]: Stop condition detected
-[19:48:18][I][i2c_sniffer:057]: Start condition detected
-[19:48:18][D][text_sensor:064]: 'I2C Sniffer Output': Sending state ''
-[19:48:18][I][i2c_sniffer:067]: Stop condition detected
-[19:48:18][I][i2c_sniffer:057]: Start condition detected
-[19:48:18][I][i2c_sniffer:067]: Stop condition detected
-[19:48:18][I][i2c_sniffer:057]: Start condition detected
-[19:48:18][I][i2c_sniffer:067]: Stop condition detected
-[19:48:18][I][i2c_sniffer:057]: Start condition detected
-[19:48:18][I][i2c_sniffer:067]: Stop condition detected
-[19:48:19][I][i2c_sniffer:057]: Start condition detected
-[19:48:19][I][i2c_sniffer:067]: Stop condition detected
-[19:48:19][I][i2c_sniffer:057]: Start condition detected
-[19:48:19][I][i2c_sniffer:067]: Stop condition detected
-[19:48:19][I][i2c_sniffer:057]: Start condition detected
-[19:48:19][I][i2c_sniffer:067]: Stop condition detected
-[19:48:19][I][i2c_sniffer:057]: Start condition detected
-[19:48:19][I][i2c_sniffer:057]: Start condition detected
-[19:48:19][I][i2c_sniffer:067]: Stop condition detected
-[19:48:20][I][i2c_sniffer:057]: Start condition detected
+INFO Successfully connected to jacuzzi @ 192.168.0.168 in 0.148s
+INFO Successful handshake with jacuzzi @ 192.168.0.168 in 0.103s
+[21:26:26][I][app:115]: ESPHome version 2025.5.2 compiled on Jun 15 2025, 21:24:56
+[21:26:26][C][wifi:600]: WiFi:
+[21:26:26][C][wifi:428]:   Local MAC: F4:65:0B:07:A3:A8
+[21:26:26][C][wifi:433]:   SSID: 'Telenet7111677'[redacted]
+[21:26:26][C][wifi:436]:   IP Address: 192.168.0.168
+[21:26:26][C][wifi:440]:   BSSID: 1E:55:70:B4:A2:19[redacted]
+[21:26:26][C][wifi:441]:   Hostname: 'jacuzzi'
+[21:26:26][C][wifi:443]:   Signal strength: -67 dB ▂▄▆█
+[21:26:26][C][wifi:447]:   Channel: 6
+[21:26:26][C][wifi:448]:   Subnet: 255.255.255.0
+[21:26:26][C][wifi:449]:   Gateway: 192.168.0.1
+[21:26:26][C][wifi:450]:   DNS1: 195.130.130.5
+[21:26:26][C][wifi:451]:   DNS2: 195.130.131.5
+[21:26:26][C][logger:224]: Logger:
+[21:26:26][C][logger:225]:   Max Level: DEBUG
+[21:26:26][C][logger:226]:   Initial Level: DEBUG
+[21:26:26][C][logger:228]:   Log Baud Rate: 0
+[21:26:26][C][logger:229]:   Hardware UART: UART0
+[21:26:26][C][logger:233]:   Task Log Buffer Size: 768
+[21:26:26][C][template.text_sensor:020]: Template Sensor 'I2C Buffer'
+[21:26:26][C][mdns:120]: mDNS:
+[21:26:26][C][mdns:121]:   Hostname: jacuzzi
+[21:26:26][C][esphome.ota:073]: Over-The-Air updates:
+[21:26:26][C][esphome.ota:074]:   Address: jacuzzi.local:3232
+[21:26:26][C][esphome.ota:075]:   Version: 2
+[21:26:26][C][esphome.ota:078]:   Password configured
+[21:26:26][C][safe_mode:018]: Safe Mode:
+[21:26:26][C][safe_mode:020]:   Boot considered successful after 60 seconds
+[21:26:26][C][safe_mode:021]:   Invoke after 10 boot attempts
+[21:26:26][C][safe_mode:023]:   Remain in safe mode for 300 seconds
+[21:26:26][C][api:170]: API Server:
+[21:26:26][C][api:171]:   Address: jacuzzi.local:6053
+[21:26:26][C][api:173]:   Using noise encryption: YES
+[21:26:26][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:26][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:26][I][i2c_sniffer:091]: Stop condition detected
+[21:26:26][I][i2c_sniffer:081]: Start condition detected
+[21:26:26][I][i2c_sniffer:091]: Stop condition detected
+[21:26:26][I][i2c_sniffer:081]: Start condition detected
+[21:26:27][I][i2c_sniffer:124]: Address byte: 0x7F (read (master ← slave))
+[21:26:27][D][i2c_sniffer:102]: NACK received
+[21:26:28][I][i2c_sniffer:127]: Data byte: 0xFF
+[21:26:28][D][i2c_sniffer:102]: NACK received
+[21:26:28][I][i2c_sniffer:081]: Start condition detected
+[21:26:28][I][i2c_sniffer:091]: Stop condition detected
+[21:26:28][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:28][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:29][I][i2c_sniffer:091]: Stop condition detected
+[21:26:29][I][i2c_sniffer:081]: Start condition detected
+[21:26:29][I][i2c_sniffer:091]: Stop condition detected
+[21:26:29][I][i2c_sniffer:081]: Start condition detected
+[21:26:29][I][i2c_sniffer:091]: Stop condition detected
+[21:26:30][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:30][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:31][I][i2c_sniffer:081]: Start condition detected
+[21:26:31][I][i2c_sniffer:081]: Start condition detected
+[21:26:31][I][i2c_sniffer:091]: Stop condition detected
+[21:26:31][I][i2c_sniffer:081]: Start condition detected
+[21:26:31][I][i2c_sniffer:091]: Stop condition detected
+[21:26:31][I][i2c_sniffer:091]: Stop condition detected
+[21:26:32][I][i2c_sniffer:081]: Start condition detected
+[21:26:32][I][i2c_sniffer:091]: Stop condition detected
+[21:26:32][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:32][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:33][I][i2c_sniffer:081]: Start condition detected
+[21:26:33][I][i2c_sniffer:091]: Stop condition detected
+[21:26:33][I][i2c_sniffer:081]: Start condition detected
+[21:26:33][I][i2c_sniffer:091]: Stop condition detected
+[21:26:34][I][i2c_sniffer:081]: Start condition detected
+[21:26:34][I][i2c_sniffer:091]: Stop condition detected
+[21:26:34][I][i2c_sniffer:091]: Stop condition detected
+[21:26:34][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:34][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:34][I][i2c_sniffer:081]: Start condition detected
+[21:26:34][I][i2c_sniffer:091]: Stop condition detected
+[21:26:34][I][i2c_sniffer:081]: Start condition detected
+[21:26:34][I][i2c_sniffer:091]: Stop condition detected
+[21:26:35][I][i2c_sniffer:081]: Start condition detected
+[21:26:35][I][i2c_sniffer:091]: Stop condition detected
+[21:26:35][I][i2c_sniffer:081]: Start condition detected
+[21:26:35][I][i2c_sniffer:091]: Stop condition detected
+[21:26:35][I][i2c_sniffer:081]: Start condition detected
+[21:26:35][I][i2c_sniffer:091]: Stop condition detected
+[21:26:36][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:36][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:36][I][i2c_sniffer:081]: Start condition detected
+[21:26:36][I][i2c_sniffer:091]: Stop condition detected
+[21:26:37][I][i2c_sniffer:081]: Start condition detected
+[21:26:37][I][i2c_sniffer:091]: Stop condition detected
+[21:26:37][I][i2c_sniffer:081]: Start condition detected
+[21:26:37][I][i2c_sniffer:091]: Stop condition detected
+[21:26:38][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:38][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:38][I][i2c_sniffer:081]: Start condition detected
+[21:26:38][I][i2c_sniffer:091]: Stop condition detected
+[21:26:38][I][i2c_sniffer:081]: Start condition detected
+[21:26:38][I][i2c_sniffer:091]: Stop condition detected
+[21:26:39][I][i2c_sniffer:081]: Start condition detected
+[21:26:39][I][i2c_sniffer:124]: Address byte: 0x7F (read (master ← slave))
+[21:26:39][D][i2c_sniffer:102]: NACK received
+[21:26:40][D][text_sensor:064]: 'I2C Buffer': Sending state '0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:40][I][i2c_sniffer:070]: Publishing buffer:
+0x7F
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:40][I][i2c_sniffer:127]: Data byte: 0xFF
+[21:26:40][D][i2c_sniffer:102]: NACK received
+[21:26:41][I][i2c_sniffer:081]: Start condition detected
+[21:26:41][I][i2c_sniffer:091]: Stop condition detected
+[21:26:42][I][i2c_sniffer:091]: Stop condition detected
+[21:26:42][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:42][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:42][I][i2c_sniffer:091]: Stop condition detected
+[21:26:42][I][i2c_sniffer:081]: Start condition detected
+[21:26:42][I][i2c_sniffer:091]: Stop condition detected
+[21:26:42][I][i2c_sniffer:081]: Start condition detected
+[21:26:42][I][i2c_sniffer:091]: Stop condition detected
+[21:26:44][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:44][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:45][I][i2c_sniffer:091]: Stop condition detected
+[21:26:45][I][i2c_sniffer:081]: Start condition detected
+[21:26:45][I][i2c_sniffer:091]: Stop condition detected
+[21:26:46][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:46][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:48][I][i2c_sniffer:081]: Start condition detected
+[21:26:48][I][i2c_sniffer:091]: Stop condition detected
+[21:26:48][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:48][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:48][I][i2c_sniffer:081]: Start condition detected
+[21:26:48][I][i2c_sniffer:091]: Stop condition detected
+[21:26:49][I][i2c_sniffer:081]: Start condition detected
+[21:26:49][I][i2c_sniffer:091]: Stop condition detected
+[21:26:50][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:50][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:51][I][i2c_sniffer:091]: Stop condition detected
+[21:26:52][I][i2c_sniffer:091]: Stop condition detected
+[21:26:52][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:52][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:52][I][i2c_sniffer:081]: Start condition detected
+[21:26:52][I][i2c_sniffer:091]: Stop condition detected
+[21:26:53][I][i2c_sniffer:081]: Start condition detected
+[21:26:53][I][i2c_sniffer:091]: Stop condition detected
+[21:26:53][I][i2c_sniffer:091]: Stop condition detected
+[21:26:54][I][i2c_sniffer:091]: Stop condition detected
+[21:26:54][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:54][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:54][I][i2c_sniffer:081]: Start condition detected
+[21:26:54][I][i2c_sniffer:091]: Stop condition detected
+[21:26:55][I][i2c_sniffer:091]: Stop condition detected
+[21:26:55][I][i2c_sniffer:081]: Start condition detected
+[21:26:55][I][i2c_sniffer:091]: Stop condition detected
+[21:26:56][I][i2c_sniffer:091]: Stop condition detected
+[21:26:56][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:56][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:56][I][i2c_sniffer:081]: Start condition detected
+[21:26:56][I][i2c_sniffer:091]: Stop condition detected
+[21:26:56][I][i2c_sniffer:081]: Start condition detected
+[21:26:56][I][i2c_sniffer:091]: Stop condition detected
+[21:26:57][I][i2c_sniffer:081]: Start condition detected
+[21:26:57][I][i2c_sniffer:091]: Stop condition detected
+[21:26:57][I][i2c_sniffer:081]: Start condition detected
+[21:26:57][I][i2c_sniffer:091]: Stop condition detected
+[21:26:57][I][i2c_sniffer:081]: Start condition detected
+[21:26:57][I][i2c_sniffer:091]: Stop condition detected
+[21:26:57][I][i2c_sniffer:081]: Start condition detected
+[21:26:57][I][i2c_sniffer:091]: Stop condition detected
+[21:26:58][I][i2c_sniffer:081]: Start condition detected
+[21:26:58][I][i2c_sniffer:091]: Stop condition detected
+[21:26:58][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:26:58][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:26:58][I][i2c_sniffer:081]: Start condition detected
+[21:26:58][I][i2c_sniffer:091]: Stop condition detected
+[21:26:58][I][i2c_sniffer:081]: Start condition detected
+[21:26:58][I][i2c_sniffer:091]: Stop condition detected
+[21:27:00][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:00][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:01][I][i2c_sniffer:091]: Stop condition detected
+[21:27:01][I][i2c_sniffer:081]: Start condition detected
+[21:27:01][I][i2c_sniffer:091]: Stop condition detected
+[21:27:02][I][i2c_sniffer:081]: Start condition detected
+[21:27:02][I][i2c_sniffer:091]: Stop condition detected
+[21:27:02][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:02][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:02][I][i2c_sniffer:081]: Start condition detected
+[21:27:02][I][i2c_sniffer:091]: Stop condition detected
+[21:27:03][I][i2c_sniffer:081]: Start condition detected
+[21:27:03][I][i2c_sniffer:091]: Stop condition detected
+[21:27:04][I][i2c_sniffer:081]: Start condition detected
+[21:27:04][I][i2c_sniffer:091]: Stop condition detected
+[21:27:04][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:04][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:05][I][i2c_sniffer:081]: Start condition detected
+[21:27:05][I][i2c_sniffer:091]: Stop condition detected
+[21:27:05][I][i2c_sniffer:081]: Start condition detected
+[21:27:05][I][i2c_sniffer:091]: Stop condition detected
+[21:27:06][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:06][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:06][I][i2c_sniffer:081]: Start condition detected
+[21:27:06][I][i2c_sniffer:091]: Stop condition detected
+[21:27:06][I][i2c_sniffer:081]: Start condition detected
+[21:27:06][I][i2c_sniffer:091]: Stop condition detected
+[21:27:07][I][i2c_sniffer:081]: Start condition detected
+[21:27:07][I][i2c_sniffer:091]: Stop condition detected
+[21:27:07][I][i2c_sniffer:091]: Stop condition detected
+[21:27:08][I][i2c_sniffer:081]: Start condition detected
+[21:27:08][I][i2c_sniffer:091]: Stop condition detected
+[21:27:08][I][i2c_sniffer:081]: Start condition detected
+[21:27:08][I][i2c_sniffer:091]: Stop condition detected
+[21:27:08][I][i2c_sniffer:091]: Stop condition detected
+[21:27:08][I][i2c_sniffer:081]: Start condition detected
+[21:27:08][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:08][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:08][I][i2c_sniffer:081]: Start condition detected
+[21:27:08][I][i2c_sniffer:091]: Stop condition detected
+[21:27:09][I][i2c_sniffer:081]: Start condition detected
+[21:27:09][I][i2c_sniffer:091]: Stop condition detected
+[21:27:10][I][i2c_sniffer:081]: Start condition detected
+[21:27:10][I][i2c_sniffer:091]: Stop condition detected
+[21:27:10][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:10][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:10][I][i2c_sniffer:081]: Start condition detected
+[21:27:10][I][i2c_sniffer:091]: Stop condition detected
+[21:27:10][I][i2c_sniffer:081]: Start condition detected
+[21:27:10][I][i2c_sniffer:091]: Stop condition detected
+[21:27:11][I][i2c_sniffer:091]: Stop condition detected
+[21:27:12][I][i2c_sniffer:081]: Start condition detected
+[21:27:12][I][i2c_sniffer:091]: Stop condition detected
+[21:27:12][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:12][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:13][I][i2c_sniffer:081]: Start condition detected
+[21:27:13][I][i2c_sniffer:091]: Stop condition detected
+[21:27:14][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:14][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:14][I][i2c_sniffer:081]: Start condition detected
+[21:27:14][I][i2c_sniffer:091]: Stop condition detected
+[21:27:16][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:16][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:17][I][i2c_sniffer:081]: Start condition detected
+[21:27:17][I][i2c_sniffer:091]: Stop condition detected
+[21:27:18][I][i2c_sniffer:081]: Start condition detected
+[21:27:18][I][i2c_sniffer:081]: Start condition detected
+[21:27:18][I][i2c_sniffer:091]: Stop condition detected
+[21:27:18][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:18][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:18][I][i2c_sniffer:081]: Start condition detected
+[21:27:18][I][i2c_sniffer:091]: Stop condition detected
+[21:27:19][I][i2c_sniffer:091]: Stop condition detected
+[21:27:19][I][i2c_sniffer:081]: Start condition detected
+[21:27:19][I][i2c_sniffer:091]: Stop condition detected
+[21:27:20][I][i2c_sniffer:081]: Start condition detected
+[21:27:20][I][i2c_sniffer:091]: Stop condition detected
+[21:27:20][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:20][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:20][I][i2c_sniffer:091]: Stop condition detected
+[21:27:20][I][i2c_sniffer:081]: Start condition detected
+[21:27:20][I][i2c_sniffer:091]: Stop condition detected
+[21:27:22][I][i2c_sniffer:081]: Start condition detected
+[21:27:22][I][i2c_sniffer:091]: Stop condition detected
+[21:27:22][I][i2c_sniffer:091]: Stop condition detected
+[21:27:22][I][i2c_sniffer:081]: Start condition detected
+[21:27:22][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:22][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:23][I][i2c_sniffer:124]: Address byte: 0x7F (read (master ← slave))
+[21:27:23][D][i2c_sniffer:102]: NACK received
+[21:27:23][I][i2c_sniffer:081]: Start condition detected
+[21:27:23][I][i2c_sniffer:091]: Stop condition detected
+[21:27:24][I][i2c_sniffer:081]: Start condition detected
+[21:27:24][I][i2c_sniffer:091]: Stop condition detected
+[21:27:24][I][i2c_sniffer:081]: Start condition detected
+[21:27:24][I][i2c_sniffer:091]: Stop condition detected
+[21:27:24][I][i2c_sniffer:081]: Start condition detected
+[21:27:24][I][i2c_sniffer:091]: Stop condition detected
+[21:27:24][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:24][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:24][I][i2c_sniffer:091]: Stop condition detected
+[21:27:24][I][i2c_sniffer:081]: Start condition detected
+[21:27:24][I][i2c_sniffer:091]: Stop condition detected
+[21:27:25][I][i2c_sniffer:081]: Start condition detected
+[21:27:25][I][i2c_sniffer:091]: Stop condition detected
+[21:27:25][I][i2c_sniffer:081]: Start condition detected
+[21:27:25][I][i2c_sniffer:091]: Stop condition detected
+[21:27:25][I][i2c_sniffer:091]: Stop condition detected
+[21:27:26][I][i2c_sniffer:081]: Start condition detected
+[21:27:26][I][i2c_sniffer:091]: Stop condition detected
+[21:27:26][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:26][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:26][I][i2c_sniffer:081]: Start condition detected
+[21:27:26][I][i2c_sniffer:091]: Stop condition detected
+[21:27:26][I][i2c_sniffer:091]: Stop condition detected
+[21:27:27][I][i2c_sniffer:091]: Stop condition detected
+[21:27:28][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:28][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:29][I][i2c_sniffer:091]: Stop condition detected
+[21:27:29][I][i2c_sniffer:081]: Start condition detected
+[21:27:30][I][i2c_sniffer:124]: Address byte: 0x7F (read (master ← slave))
+[21:27:30][D][i2c_sniffer:102]: NACK received
+[21:27:30][I][i2c_sniffer:091]: Stop condition detected
+[21:27:30][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:30][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:30][I][i2c_sniffer:081]: Start condition detected
+[21:27:30][I][i2c_sniffer:091]: Stop condition detected
+[21:27:31][I][i2c_sniffer:081]: Start condition detected
+[21:27:31][I][i2c_sniffer:091]: Stop condition detected
+[21:27:31][I][i2c_sniffer:081]: Start condition detected
+[21:27:31][I][i2c_sniffer:091]: Stop condition detected
+[21:27:32][I][i2c_sniffer:081]: Start condition detected
+[21:27:32][I][i2c_sniffer:091]: Stop condition detected
+[21:27:32][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:32][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:32][I][i2c_sniffer:081]: Start condition detected
+[21:27:32][I][i2c_sniffer:091]: Stop condition detected
+[21:27:32][I][i2c_sniffer:091]: Stop condition detected
+[21:27:33][I][i2c_sniffer:091]: Stop condition detected
+[21:27:33][I][i2c_sniffer:091]: Stop condition detected
+[21:27:34][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:34][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:34][I][i2c_sniffer:091]: Stop condition detected
+[21:27:35][I][i2c_sniffer:081]: Start condition detected
+[21:27:35][I][i2c_sniffer:081]: Start condition detected
+[21:27:35][I][i2c_sniffer:091]: Stop condition detected
+[21:27:35][I][i2c_sniffer:091]: Stop condition detected
+[21:27:35][I][i2c_sniffer:081]: Start condition detected
+[21:27:35][I][i2c_sniffer:091]: Stop condition detected
+[21:27:36][I][i2c_sniffer:081]: Start condition detected
+[21:27:36][I][i2c_sniffer:091]: Stop condition detected
+[21:27:36][I][i2c_sniffer:091]: Stop condition detected
+[21:27:36][I][i2c_sniffer:081]: Start condition detected
+[21:27:36][I][i2c_sniffer:091]: Stop condition detected
+[21:27:36][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:36][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:36][I][i2c_sniffer:081]: Start condition detected
+[21:27:36][I][i2c_sniffer:091]: Stop condition detected
+[21:27:36][I][i2c_sniffer:081]: Start condition detected
+[21:27:36][I][i2c_sniffer:091]: Stop condition detected
+[21:27:37][I][i2c_sniffer:091]: Stop condition detected
+[21:27:37][I][i2c_sniffer:081]: Start condition detected
+[21:27:37][I][i2c_sniffer:091]: Stop condition detected
+[21:27:38][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:38][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:39][I][i2c_sniffer:081]: Start condition detected
+[21:27:39][I][i2c_sniffer:091]: Stop condition detected
+[21:27:40][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:40][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:40][I][i2c_sniffer:081]: Start condition detected
+[21:27:40][I][i2c_sniffer:091]: Stop condition detected
+[21:27:41][I][i2c_sniffer:081]: Start condition detected
+[21:27:41][I][i2c_sniffer:091]: Stop condition detected
+[21:27:41][I][i2c_sniffer:081]: Start condition detected
+[21:27:41][I][i2c_sniffer:091]: Stop condition detected
+[21:27:42][I][i2c_sniffer:081]: Start condition detected
+[21:27:42][I][i2c_sniffer:091]: Stop condition detected
+[21:27:42][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:42][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:42][I][i2c_sniffer:081]: Start condition detected
+[21:27:42][I][i2c_sniffer:091]: Stop condition detected
+[21:27:42][I][i2c_sniffer:081]: Start condition detected
+[21:27:42][I][i2c_sniffer:091]: Stop condition detected
+[21:27:43][I][i2c_sniffer:081]: Start condition detected
+[21:27:43][I][i2c_sniffer:091]: Stop condition detected
+[21:27:44][I][i2c_sniffer:081]: Start condition detected
+[21:27:44][I][i2c_sniffer:091]: Stop condition detected
+[21:27:44][I][i2c_sniffer:081]: Start condition detected
+[21:27:44][I][i2c_sniffer:091]: Stop condition detected
+[21:27:44][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:44][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:45][I][i2c_sniffer:081]: Start condition detected
+[21:27:45][I][i2c_sniffer:091]: Stop condition detected
+[21:27:46][I][i2c_sniffer:091]: Stop condition detected
+[21:27:46][I][i2c_sniffer:081]: Start condition detected
+[21:27:46][I][i2c_sniffer:091]: Stop condition detected
+[21:27:46][I][i2c_sniffer:081]: Start condition detected
+[21:27:46][I][i2c_sniffer:091]: Stop condition detected
+[21:27:46][I][i2c_sniffer:091]: Stop condition detected
+[21:27:46][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:46][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:46][I][i2c_sniffer:081]: Start condition detected
+[21:27:46][I][i2c_sniffer:091]: Stop condition detected
+[21:27:47][I][i2c_sniffer:081]: Start condition detected
+[21:27:47][I][i2c_sniffer:091]: Stop condition detected
+[21:27:47][I][i2c_sniffer:091]: Stop condition detected
+[21:27:48][I][i2c_sniffer:081]: Start condition detected
+[21:27:48][I][i2c_sniffer:091]: Stop condition detected
+[21:27:48][I][i2c_sniffer:081]: Start condition detected
+[21:27:48][I][i2c_sniffer:091]: Stop condition detected
+[21:27:48][D][text_sensor:064]: 'I2C Buffer': Sending state '0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+'
+[21:27:48][I][i2c_sniffer:070]: Publishing buffer:
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+0xFF
+[21:27:48][I][i2c_sniffer:081]: Start condition detected
+[21:27:48][I][i2c_sniffer:091]: Stop condition detected
+[21:27:48][I][i2c_sniffer:081]: Start condition detected
+[21:27:48][I][i2c_sniffer:091]: Stop condition detected
+[21:27:49][I][i2c_sniffer:091]: Stop condition detected
+[21:27:49][I][i2c_sniffer:081]: Start condition detected
+[21:27:49][I][i2c_sniffer:091]: Stop condition detected
+[21:27:49][I][i2c_sniffer:081]: Start condition detected
+[21:27:49][I][i2c_sniffer:091]: Stop condition detected
