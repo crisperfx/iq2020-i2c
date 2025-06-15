@@ -18,6 +18,7 @@ uint8_t byte_buf = 0;
 bool receiving = false;
 bool ack_phase = false;
 bool expect_address = false;
+bool is_read_operation = false;
 
 void I2CSniffer::setup() {
   pinMode(SDA_PIN, INPUT_PULLUP);
@@ -31,53 +32,50 @@ void I2CSniffer::loop() {
   bool sda = digitalRead(SDA_PIN);
   bool scl = digitalRead(SCL_PIN);
 
-  // Start condition (SDA valt terwijl SCL hoog is)
+  // Detecteer startconditie
   if (prev_sda == true && sda == false && scl == true) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving = true;
-    ack_phase = false;
     bit_count = 0;
     byte_buf = 0;
     expect_address = true;
+    ack_phase = false;
   }
 
-  // Stop condition (SDA stijgt terwijl SCL hoog is)
+  // Detecteer stopconditie
   if (prev_sda == false && sda == true && scl == true) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving = false;
-    ack_phase = false;
-    bit_count = 0;
-    byte_buf = 0;
   }
 
-  // Alleen data lezen als we "ontvangen"
-  if (receiving) {
-    // Detecteer stijgende flank van SCL
-    if (prev_scl == false && scl == true) {
-      if (!ack_phase) {
-        // Data bit inlezen
-        byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
-        bit_count++;
+  // Verwerk bit op stijgende flank van SCL
+  if (receiving && prev_scl == false && scl == true) {
+    if (!ack_phase) {
+      // Verzamel bits in byte_buf
+      byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
+      bit_count++;
 
-        if (bit_count == 8) {
-          ESP_LOGI(TAG, "Byte received: 0x%02X", byte_buf);
-          bit_count = 0;
-          ack_phase = true;
-        }
+      if (bit_count == 8) {
         if (expect_address) {
           uint8_t address = byte_buf >> 1;
-          bool is_read = byte_buf & 0x01;
-          ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, is_read ? "read" : "write");
+          is_read_operation = byte_buf & 0x01;
+          ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, is_read_operation ? "read (master ← slave)" : "write (master → slave)");
           expect_address = false;
         } else {
-          ESP_LOGI(TAG, "Data byte: 0x%02X", byte_buf);
+          ESP_LOGI(TAG, "Data byte: 0x%02X (%s)", byte_buf, is_read_operation ? "slave → master" : "master → slave");
         }
-
-      } else {
-        ESP_LOGI(TAG, "ACK bit: %s", sda ? "NACK" : "ACK");
-        ack_phase = false;
-        byte_buf = 0;
+        ack_phase = true;
+        bit_count = 0;
       }
+    } else {
+      // 9e bit = ACK/NACK
+      if (sda == 0) {
+        ESP_LOGI(TAG, "ACK received");
+      } else {
+        ESP_LOGI(TAG, "NACK received");
+      }
+      ack_phase = false;
+      byte_buf = 0;
     }
   }
 
