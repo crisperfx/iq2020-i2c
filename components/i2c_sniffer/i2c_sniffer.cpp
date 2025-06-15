@@ -5,6 +5,9 @@
 namespace esphome {
 namespace i2c_sniffer {
 
+// Globale pointer declareren
+I2CSniffer *global_sniffer = nullptr;
+
 static const char *const TAG = "i2c_sniffer";
 
 static bool stable_read(uint8_t pin) {
