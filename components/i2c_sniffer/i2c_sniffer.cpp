@@ -20,53 +20,46 @@ void I2CSniffer::loop() {
   bool sda = digitalRead(SDA_PIN);
   bool scl = digitalRead(SCL_PIN);
 
-  // Log lines voor debug (kan je uitzetten om log spam te vermijden)
-  // ESP_LOGI(TAG, "SDA: %d, SCL: %d", sda, scl);
-
-  // Start condition: SDA gaat van hoog naar laag terwijl SCL hoog is
+  // Detect start condition: SDA gaat van hoog naar laag terwijl SCL hoog is
   if (prev_sda == true && sda == false && scl == true) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving = true;
-    receiving_address = true;
-    ack_bit_expected = false;
+    receiving_address = true;  // Nu komt adresbyte
     bit_count = 0;
     byte_buf = 0;
+    ack_bit_expected = false;
   }
 
-  // Stop condition: SDA gaat van laag naar hoog terwijl SCL hoog is
+  // Detect stop condition: SDA gaat van laag naar hoog terwijl SCL hoog is
   if (prev_sda == false && sda == true && scl == true) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving = false;
   }
 
-  // Data bits lezen op stijgende flank van SCL
-  if (receiving && prev_scl == false && scl == true) {
+  if (receiving && prev_scl == false && scl == true) {  // stijgende flank SCL
     if (ack_bit_expected) {
-      // ACK bit ontvangen
-      if (sda == 0) {
-        ESP_LOGI(TAG, "ACK received");
-      } else {
-        ESP_LOGI(TAG, "NACK received");
-      }
+      ESP_LOGI(TAG, "ACK bit: %d", sda ? 1 : 0);
       ack_bit_expected = false;
-      receiving_address = false;  // na adres is het data
-      bit_count = 0;
-      byte_buf = 0;
+
+      // Na adres + ack: nu data bytes volgen
+      if (receiving_address) {
+        receiving_address = false;
+      }
     } else {
-      // Bits in byte schuiven
       byte_buf = (byte_buf << 1) | (sda ? 1 : 0);
       bit_count++;
 
       if (bit_count == 8) {
         if (receiving_address) {
-          // Adresbyte: hoogste 7 bits adres, LSB R/W
           uint8_t address = byte_buf >> 1;
-          bool read_write = byte_buf & 1;
-          ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, read_write ? "read (master ← slave)" : "write (master → slave)");
+          bool rw = byte_buf & 1;
+          ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, rw ? "read (master ← slave)" : "write (master → slave)");
         } else {
           ESP_LOGI(TAG, "Data byte: 0x%02X", byte_buf);
         }
-        ack_bit_expected = true;  // Nu volgt het ack bit
+        bit_count = 0;
+        byte_buf = 0;
+        ack_bit_expected = true;  // volgend bit is ACK
       }
     }
   }
