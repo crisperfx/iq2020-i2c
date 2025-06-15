@@ -69,7 +69,9 @@ void I2CSniffer::publish_buffer() {
 
   ESP_LOGI(TAG, "Publishing buffer:\n%s", buffer_str.c_str());
 }
-
+void I2CSniffer::set_buffer_sensor(text_sensor::TextSensor *sensor) {
+  this->buffer_sensor_ = sensor;
+}
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
