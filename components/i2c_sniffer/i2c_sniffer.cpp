@@ -42,17 +42,24 @@ void I2CSniffer::setup() {
   prev_scl_ = digitalRead(scl_pin_);
 }
 void I2CSniffer::publish_buffer() {
+  if (this->buffer_sensor_ == nullptr)
+    return;
+
+  // 🛠 Vervang hier de placeholder door echte bufferinhoud:
   std::string buffer_str;
-
-  // Voeg hier jouw echte bufferdata toe. Bijvoorbeeld:
   for (const auto &line : this->buffer_) {
-    buffer_str += line + "\n";
+    output += line + "\n";
   }
 
-  if (this->buffer_sensor_ != nullptr) {
-    this->buffer_sensor_->publish_state(buffer_str);
-    ESP_LOGI("i2c_sniffer", "Publishing buffer: %s", buffer_str.c_str());
-  }
+  // 🔧 Eventueel limiteren (optioneel):
+  if (output.length() > 512)  // hou slechts laatste 512 chars
+    output = output.substr(output.length() - 512);
+
+  // 📤 Publiceer naar Home Assistant
+  this->buffer_sensor_->publish_state(output);
+
+  // 🕵️ Debuglog, kan je later uitschakelen:
+  ESP_LOGI("i2c_sniffer", "Publishing buffer:\n%s", output.c_str());
 }
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
