@@ -4,4 +4,11 @@ files:
   - i2c_sniffer.h
   - i2c_sniffer.cpp
 includes:
-  - .
+  - "."
+parameters:
+  sda_pin:
+    int: true
+    default: 25
+  scl_pin:
+    int: true
+    default: 21
