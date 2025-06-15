@@ -105,7 +105,7 @@ void I2CSniffer::loop() {
     }
     if (buffer_sensor_ != nullptr) {
     // Stel dat je je buffer als std::string hebt:
-    std::string buffer_str = ...;  // vul dit met actuele data
+    std::string buffer_str = "Simulated I2C data";  // vul dit met actuele data
 
     // update de text sensor (converteer naar std::string)
     buffer_sensor_->publish_state(buffer_str);
