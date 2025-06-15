@@ -10,7 +10,7 @@ namespace i2c_sniffer {
 
 class I2CSniffer : public Component {
  public:
-  void set_buffer_sensor(text_sensor::TextSensor *sensor) { this->buffer_sensor_ = sensor; }
+  void set_buffer_sensor(text_sensor::TextSensor *sensor);
   void publish_buffer();
   void setup() override;
   void loop() override;
