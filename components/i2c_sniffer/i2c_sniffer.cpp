@@ -1,6 +1,7 @@
 #include "i2c_sniffer.h"
 #include "esphome/core/log.h"
 #include "esphome/core/component.h"
+#include "esphome/core/application.h"
 #include <Arduino.h>
 
 namespace esphome {
