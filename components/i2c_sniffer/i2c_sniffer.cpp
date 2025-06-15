@@ -30,6 +30,7 @@ void I2CSniffer::setup() {
 void I2CSniffer::loop() {
   bool sda = digitalRead(SDA_PIN);
   bool scl = digitalRead(SCL_PIN);
+  ESP_LOGI(TAG, "SDA: %d, SCL: %d", sda, scl);
 
   // Detect start condition: SDA gaat laag terwijl SCL hoog is
   if (prev_sda == true && sda == false && scl == true) {
