@@ -7,6 +7,8 @@ namespace i2c_sniffer {
 
 class I2CSniffer : public Component {
  public:
+  void set_text_sensor(text_sensor::TextSensor *sensor) { this->text_sensor_ = sensor; }
+  void publish_buffer();
   void setup() override;
   void loop() override;
 
@@ -36,6 +38,8 @@ class I2CSniffer : public Component {
 
   uint8_t bit_count_ = 0;
   uint8_t byte_buf_ = 0;
+  std::deque<std::string> buffer_;
+  text_sensor::TextSensor *text_sensor_{nullptr};
 };
 
 void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level = 3, int buffer_size = 16);
