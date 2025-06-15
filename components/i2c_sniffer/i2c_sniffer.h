@@ -2,6 +2,8 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/text_sensor/text_sensor.h"
+#include <deque>
+#include <string>
 
 namespace esphome {
 namespace i2c_sniffer {
@@ -20,15 +22,15 @@ class I2CSniffer : public Component {
   void set_log_level(int level) {
     this->log_level_ = level;
   }
-  void set_buffer_size(int size) {
-    this->buffer_size_ = size;
+  void set_buffer_size(size_t size) {
+    this->max_buffer_size_ = size;
   }
 
  protected:
   int sda_pin_ = 25;
   int scl_pin_ = 21;
   int log_level_ = 3;
-  int buffer_size_ = 16;
+  size_t max_buffer_size_ = 16;
 
   bool prev_sda_ = true;
   bool prev_scl_ = true;
@@ -39,7 +41,8 @@ class I2CSniffer : public Component {
 
   uint8_t bit_count_ = 0;
   uint8_t byte_buf_ = 0;
-  std::deque<std::string> buffer_;
+
+  std::deque<std::string> buffer_;  // buffer met hex strings
   text_sensor::TextSensor *buffer_sensor_{nullptr};
 };
 
