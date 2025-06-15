@@ -8,8 +8,8 @@ namespace i2c_sniffer {
 static const char *const TAG = "i2c_sniffer";
 
 void I2CSniffer::setup() {
-  pinMode(sda_pin_, INPUT);
-  pinMode(scl_pin_, INPUT);
+  pinMode(sda_pin_, INPUT_PULLUP);
+  pinMode(scl_pin_, INPUT_PULLUP);
   ESP_LOGI(TAG, "I2C Sniffer started (SDA=%d, SCL=%d)", sda_pin_, scl_pin_);
 
   prev_sda_ = digitalRead(sda_pin_);
