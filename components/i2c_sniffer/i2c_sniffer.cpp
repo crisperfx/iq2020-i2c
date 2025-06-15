@@ -7,8 +7,8 @@ namespace i2c_sniffer {
 
 static const char *const TAG = "i2c_sniffer";
 
-#define SDA_PIN 25
-#define SCL_PIN 21
+#define SDA_PIN 21
+#define SCL_PIN 25
 
 // Houd vorige pinwaarden bij
 bool prev_sda = true;
