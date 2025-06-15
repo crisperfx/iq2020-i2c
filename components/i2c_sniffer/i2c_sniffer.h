@@ -1,4 +1,5 @@
 #pragma once
+
 #include "esphome/core/component.h"
 
 namespace esphome {
@@ -9,18 +10,24 @@ class I2CSniffer : public Component {
   void setup() override;
   void loop() override;
 
- private:
-  // Houd vorige pinwaarden bij
-  bool prev_sda = true;
-  bool prev_scl = true;
-  static const uint8_t SDA_PIN = 25;
-  static const uint8_t SCL_PIN = 21;
-  // Status flags en buffers
-  bool receiving = false;
-  bool receiving_address = false;
-  bool ack_bit_expected = false;
-  uint8_t bit_count = 0;
-  uint8_t byte_buf = 0;
+  void set_pins(int sda_pin, int scl_pin) {
+    sda_pin_ = sda_pin;
+    scl_pin_ = scl_pin;
+  }
+
+ protected:
+  int sda_pin_ = 25;
+  int scl_pin_ = 21;
+
+  bool prev_sda_ = true;
+  bool prev_scl_ = true;
+
+  bool receiving_ = false;
+  bool receiving_address_ = false;
+  bool ack_bit_expected_ = false;
+
+  uint8_t bit_count_ = 0;
+  uint8_t byte_buf_ = 0;
 };
 
 }  // namespace i2c_sniffer
