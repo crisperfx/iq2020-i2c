@@ -21,5 +21,9 @@ void I2CSniffer::loop() {
   ESP_LOGD(TAG, "SDA: %d, SCL: %d", sda, scl);
 }
 
+// 👇 Automatisch registreren
+static I2CSniffer *sniffer = new I2CSniffer();
+ESPHOME_COMPONENT_REGISTER(sniffer);
+
 }  // namespace i2c_sniffer
 }  // namespace esphome
