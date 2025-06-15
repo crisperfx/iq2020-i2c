@@ -38,5 +38,7 @@ class I2CSniffer : public Component {
   uint8_t byte_buf_ = 0;
 };
 
+void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level = 3, int buffer_size = 16);
+
 }  // namespace i2c_sniffer
 }  // namespace esphome
