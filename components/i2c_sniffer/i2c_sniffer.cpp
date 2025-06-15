@@ -26,7 +26,7 @@ void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level, int buffer_si
     global_sniffer->set_pins(sda_pin, scl_pin);
     global_sniffer->set_log_level(log_level);
     global_sniffer->set_buffer_size(buffer_size);
-    register_component(global_sniffer);
+    App.register_component(global_sniffer);
   }
 }
 
