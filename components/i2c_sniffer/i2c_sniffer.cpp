@@ -17,6 +17,7 @@ uint8_t bit_count = 0;
 uint8_t byte_buf = 0;
 bool receiving = false;
 bool ack_phase = false;
+bool expect_address = false;
 
 void I2CSniffer::setup() {
   pinMode(SDA_PIN, INPUT_PULLUP);
@@ -37,6 +38,7 @@ void I2CSniffer::loop() {
     ack_phase = false;
     bit_count = 0;
     byte_buf = 0;
+    expect_address = true;
   }
 
   // Stop condition (SDA stijgt terwijl SCL hoog is)
@@ -62,6 +64,15 @@ void I2CSniffer::loop() {
           bit_count = 0;
           ack_phase = true;
         }
+        if (expect_address) {
+          uint8_t address = byte_buf >> 1;
+          bool is_read = byte_buf & 0x01;
+          ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, is_read ? "read" : "write");
+          expect_address = false;
+        } else {
+          ESP_LOGI(TAG, "Data byte: 0x%02X", byte_buf);
+        }
+
       } else {
         ESP_LOGI(TAG, "ACK bit: %s", sda ? "NACK" : "ACK");
         ack_phase = false;
