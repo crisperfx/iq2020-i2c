@@ -64,9 +64,9 @@ void I2CSniffer::loop() {
     if (ack_bit_expected_) {
       // Dit is het ACK/NACK bit, geen data
       if (sda == 0) {
-        ESP_LOGI(TAG, "ACK received");
+        ESP_LOGD(TAG, "ACK received");
       } else {
-        ESP_LOGI(TAG, "NACK received");
+        ESP_LOGD(TAG, "NACK received");
       }
       ack_bit_expected_ = false;
       bit_count_ = 0;
