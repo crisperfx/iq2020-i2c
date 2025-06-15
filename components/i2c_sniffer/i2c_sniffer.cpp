@@ -57,18 +57,28 @@ void I2CSniffer::publish_buffer() {
     return;
 
   std::string buffer_str;
-  for (const auto &line : this->buffer_) {
-    buffer_str += line + "\n";
+  // Combineer alle hex strings in één regel, gescheiden door spaties
+  for (size_t i = 0; i < this->buffer_.size(); ++i) {
+    // Verwijder de "0x" prefix als die er is
+    std::string hex_val = this->buffer_[i];
+    if (hex_val.compare(0, 2, "0x") == 0 || hex_val.compare(0, 2, "0X") == 0) {
+      hex_val = hex_val.substr(2);
+    }
+    buffer_str += hex_val;
+
+    if (i != this->buffer_.size() - 1)
+      buffer_str += " ";
   }
 
-  // Hou max 512 chars
+  // Hou max 512 chars (laatste 512 tekens)
   if (buffer_str.length() > 512)
     buffer_str = buffer_str.substr(buffer_str.length() - 512);
 
   this->buffer_sensor_->publish_state(buffer_str);
 
-  ESP_LOGI(TAG, "Publishing buffer:\n%s", buffer_str.c_str());
+  ESP_LOGI(TAG, "Publishing buffer: %s", buffer_str.c_str());
 }
+
 void I2CSniffer::set_buffer_sensor(text_sensor::TextSensor *sensor) {
   this->buffer_sensor_ = sensor;
 }
