@@ -1,1 +1,447 @@
-App.register_component(global_sniffer);
+INFO ESPHome 2025.5.2
+INFO Reading configuration /config/esphome/jacuzzi.yaml...
+INFO Updating https://github.com/crisperfx/iq2020-i2c.git@None
+INFO Generating C++ source...
+INFO Compiling app...
+Processing jacuzzi (board: m5stack-atom; framework: arduino; platform: platformio/espressif32@5.4.0)
+--------------------------------------------------------------------------------
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+ - toolchain-xtensa-esp32 @ 8.4.0+2021r2-patch5
+Dependency Graph
+|-- WiFi @ 2.0.0
+|-- ESPmDNS @ 2.0.0
+|-- Update @ 2.0.0
+|-- noise-c @ 0.1.6
+Compiling .pioenvs/jacuzzi/src/esphome/components/i2c_sniffer/i2c_sniffer.cpp.o
+Linking .pioenvs/jacuzzi/firmware.elf
+RAM:   [=         ]  12.2% (used 40048 bytes from 327680 bytes)
+Flash: [=====     ]  47.4% (used 869401 bytes from 1835008 bytes)
+Building .pioenvs/jacuzzi/firmware.bin
+Creating esp32 image...
+Successfully created esp32 image.
+esp32_create_combined_bin([".pioenvs/jacuzzi/firmware.bin"], [".pioenvs/jacuzzi/firmware.elf"])
+SHA digest in image updated
+Wrote 0xe5aa0 bytes to file /data/build/jacuzzi/.pioenvs/jacuzzi/firmware.factory.bin, ready to flash to offset 0x0
+esp32_copy_ota_bin([".pioenvs/jacuzzi/firmware.bin"], [".pioenvs/jacuzzi/firmware.elf"])
+========================= [SUCCESS] Took 11.46 seconds =========================
+INFO Successfully compiled program.
+INFO Connecting to 192.168.0.168 port 3232...
+INFO Connected to 192.168.0.168
+INFO Uploading /data/build/jacuzzi/.pioenvs/jacuzzi/firmware.bin (875168 bytes)
+Uploading: [============================================================] 100% Done...
+
+INFO Upload took 9.06 seconds, waiting for result...
+INFO OTA successful
+INFO Successfully uploaded program.
+INFO Starting log output from 192.168.0.168 using esphome API
+INFO Successfully connected to jacuzzi @ 192.168.0.168 in 7.163s
+INFO Successful handshake with jacuzzi @ 192.168.0.168 in 0.095s
+[19:22:55][I][app:115]: ESPHome version 2025.5.2 compiled on Jun 15 2025, 19:17:24
+[19:22:55][C][wifi:600]: WiFi:
+[19:22:55][C][wifi:428]:   Local MAC: F4:65:0B:07:A3:A8
+[19:22:55][C][wifi:433]:   SSID: 'Telenet7111677'[redacted]
+[19:22:55][C][wifi:436]:   IP Address: 192.168.0.168
+[19:22:55][C][wifi:440]:   BSSID: 1E:55:70:B4:A2:19[redacted]
+[19:22:55][C][wifi:441]:   Hostname: 'jacuzzi'
+[19:22:55][C][wifi:443]:   Signal strength: -66 dB ▂▄▆█
+[19:22:55][C][wifi:447]:   Channel: 6
+[19:22:55][C][wifi:448]:   Subnet: 255.255.255.0
+[19:22:55][C][wifi:449]:   Gateway: 192.168.0.1
+[19:22:55][C][wifi:450]:   DNS1: 195.130.130.5
+[19:22:55][C][wifi:451]:   DNS2: 195.130.131.5
+[19:22:55][C][logger:224]: Logger:
+[19:22:55][C][logger:225]:   Max Level: DEBUG
+[19:22:55][C][logger:226]:   Initial Level: DEBUG
+[19:22:55][C][logger:228]:   Log Baud Rate: 0
+[19:22:55][C][mdns:120]: mDNS:
+[19:22:55][C][mdns:121]:   Hostname: jacuzzi
+[19:22:55][C][esphome.ota:073]: Over-The-Air updates:
+[19:22:55][C][esphome.ota:074]:   Address: jacuzzi.local:3232
+[19:22:55][C][esphome.ota:075]:   Version: 2
+[19:22:55][C][esphome.ota:078]:   Password configured
+[19:22:55][C][safe_mode:018]: Safe Mode:
+[19:22:55][C][safe_mode:020]:   Boot considered successful after 60 seconds
+[19:22:55][C][safe_mode:021]:   Invoke after 10 boot attempts
+[19:22:55][C][safe_mode:023]:   Remain in safe mode for 300 seconds
+[19:22:55][C][api:170]: API Server:
+[19:22:55][C][api:171]:   Address: jacuzzi.local:6053
+[19:22:55][C][api:173]:   Using noise encryption: YES
+[19:22:56][I][i2c_sniffer:048]: Start condition detected
+[19:22:56][I][i2c_sniffer:058]: Stop condition detected
+[19:22:57][I][i2c_sniffer:058]: Stop condition detected
+[19:22:59][I][i2c_sniffer:048]: Start condition detected
+[19:22:59][I][i2c_sniffer:058]: Stop condition detected
+[19:22:59][I][i2c_sniffer:058]: Stop condition detected
+[19:22:59][I][i2c_sniffer:058]: Stop condition detected
+[19:23:00][I][i2c_sniffer:048]: Start condition detected
+[19:23:00][I][i2c_sniffer:058]: Stop condition detected
+[19:23:00][I][i2c_sniffer:048]: Start condition detected
+[19:23:00][I][i2c_sniffer:058]: Stop condition detected
+[19:23:00][I][i2c_sniffer:048]: Start condition detected
+[19:23:00][I][i2c_sniffer:058]: Stop condition detected
+[19:23:01][I][i2c_sniffer:058]: Stop condition detected
+[19:23:02][I][i2c_sniffer:058]: Stop condition detected
+[19:23:04][I][i2c_sniffer:058]: Stop condition detected
+[19:23:04][I][i2c_sniffer:048]: Start condition detected
+[19:23:04][I][i2c_sniffer:058]: Stop condition detected
+[19:23:05][I][i2c_sniffer:048]: Start condition detected
+[19:23:05][I][i2c_sniffer:058]: Stop condition detected
+[19:23:06][I][i2c_sniffer:058]: Stop condition detected
+[19:23:06][I][i2c_sniffer:048]: Start condition detected
+[19:23:06][I][i2c_sniffer:058]: Stop condition detected
+[19:23:07][I][i2c_sniffer:058]: Stop condition detected
+[19:23:08][I][i2c_sniffer:048]: Start condition detected
+[19:23:08][I][i2c_sniffer:058]: Stop condition detected
+[19:23:10][I][i2c_sniffer:048]: Start condition detected
+[19:23:10][I][i2c_sniffer:058]: Stop condition detected
+[19:23:11][I][i2c_sniffer:048]: Start condition detected
+[19:23:11][I][i2c_sniffer:058]: Stop condition detected
+[19:23:11][I][i2c_sniffer:048]: Start condition detected
+[19:23:11][I][i2c_sniffer:084]: Address byte: 0x3F (read (master ← slave))
+[19:23:11][I][i2c_sniffer:069]: NACK received
+[19:23:11][I][i2c_sniffer:048]: Start condition detected
+[19:23:11][I][i2c_sniffer:058]: Stop condition detected
+[19:23:12][I][i2c_sniffer:048]: Start condition detected
+[19:23:12][I][i2c_sniffer:058]: Stop condition detected
+[19:23:12][I][i2c_sniffer:048]: Start condition detected
+[19:23:12][I][i2c_sniffer:058]: Stop condition detected
+[19:23:12][I][i2c_sniffer:048]: Start condition detected
+[19:23:13][I][i2c_sniffer:048]: Start condition detected
+[19:23:13][I][i2c_sniffer:058]: Stop condition detected
+[19:23:14][I][i2c_sniffer:048]: Start condition detected
+[19:23:14][I][i2c_sniffer:058]: Stop condition detected
+[19:23:15][I][i2c_sniffer:058]: Stop condition detected
+[19:23:15][I][i2c_sniffer:058]: Stop condition detected
+[19:23:15][I][i2c_sniffer:048]: Start condition detected
+[19:23:15][I][i2c_sniffer:058]: Stop condition detected
+[19:23:15][I][i2c_sniffer:048]: Start condition detected
+[19:23:16][I][i2c_sniffer:058]: Stop condition detected
+[19:23:16][I][i2c_sniffer:058]: Stop condition detected
+[19:23:16][I][i2c_sniffer:058]: Stop condition detected
+[19:23:16][I][i2c_sniffer:048]: Start condition detected
+[19:23:16][I][i2c_sniffer:058]: Stop condition detected
+[19:23:17][I][i2c_sniffer:058]: Stop condition detected
+[19:23:17][I][i2c_sniffer:048]: Start condition detected
+[19:23:17][I][i2c_sniffer:058]: Stop condition detected
+[19:23:17][I][i2c_sniffer:048]: Start condition detected
+[19:23:17][I][i2c_sniffer:058]: Stop condition detected
+[19:23:17][I][i2c_sniffer:048]: Start condition detected
+[19:23:17][I][i2c_sniffer:058]: Stop condition detected
+[19:23:18][I][i2c_sniffer:058]: Stop condition detected
+[19:23:18][I][i2c_sniffer:048]: Start condition detected
+[19:23:18][I][i2c_sniffer:058]: Stop condition detected
+[19:23:19][I][i2c_sniffer:048]: Start condition detected
+[19:23:19][I][i2c_sniffer:058]: Stop condition detected
+[19:23:19][I][i2c_sniffer:048]: Start condition detected
+[19:23:19][I][i2c_sniffer:058]: Stop condition detected
+[19:23:19][I][i2c_sniffer:058]: Stop condition detected
+[19:23:20][I][i2c_sniffer:048]: Start condition detected
+[19:23:20][I][i2c_sniffer:058]: Stop condition detected
+[19:23:20][I][i2c_sniffer:048]: Start condition detected
+[19:23:20][I][i2c_sniffer:058]: Stop condition detected
+[19:23:20][I][i2c_sniffer:048]: Start condition detected
+[19:23:20][I][i2c_sniffer:058]: Stop condition detected
+[19:23:20][I][i2c_sniffer:058]: Stop condition detected
+[19:23:20][I][i2c_sniffer:048]: Start condition detected
+[19:23:20][I][i2c_sniffer:058]: Stop condition detected
+[19:23:21][I][i2c_sniffer:048]: Start condition detected
+[19:23:21][I][i2c_sniffer:058]: Stop condition detected
+[19:23:21][I][i2c_sniffer:048]: Start condition detected
+[19:23:21][I][i2c_sniffer:058]: Stop condition detected
+[19:23:22][I][i2c_sniffer:048]: Start condition detected
+[19:23:22][I][i2c_sniffer:058]: Stop condition detected
+[19:23:22][I][i2c_sniffer:058]: Stop condition detected
+[19:23:22][I][i2c_sniffer:048]: Start condition detected
+[19:23:22][I][i2c_sniffer:058]: Stop condition detected
+[19:23:23][I][i2c_sniffer:048]: Start condition detected
+[19:23:23][I][i2c_sniffer:058]: Stop condition detected
+[19:23:24][I][i2c_sniffer:048]: Start condition detected
+[19:23:24][I][i2c_sniffer:058]: Stop condition detected
+[19:23:24][I][i2c_sniffer:048]: Start condition detected
+[19:23:24][I][i2c_sniffer:058]: Stop condition detected
+[19:23:24][I][i2c_sniffer:058]: Stop condition detected
+[19:23:25][I][i2c_sniffer:048]: Start condition detected
+[19:23:25][I][i2c_sniffer:058]: Stop condition detected
+[19:23:25][I][i2c_sniffer:048]: Start condition detected
+[19:23:25][I][i2c_sniffer:058]: Stop condition detected
+[19:23:25][I][i2c_sniffer:048]: Start condition detected
+[19:23:25][I][i2c_sniffer:058]: Stop condition detected
+[19:23:26][I][i2c_sniffer:058]: Stop condition detected
+[19:23:27][I][i2c_sniffer:058]: Stop condition detected
+[19:23:27][I][i2c_sniffer:048]: Start condition detected
+[19:23:27][I][i2c_sniffer:058]: Stop condition detected
+[19:23:27][I][i2c_sniffer:048]: Start condition detected
+[19:23:27][I][i2c_sniffer:058]: Stop condition detected
+[19:23:28][I][i2c_sniffer:048]: Start condition detected
+[19:23:28][I][i2c_sniffer:058]: Stop condition detected
+[19:23:28][I][i2c_sniffer:048]: Start condition detected
+[19:23:28][I][i2c_sniffer:058]: Stop condition detected
+[19:23:28][I][i2c_sniffer:048]: Start condition detected
+[19:23:28][I][i2c_sniffer:058]: Stop condition detected
+[19:23:28][I][i2c_sniffer:058]: Stop condition detected
+[19:23:29][I][i2c_sniffer:048]: Start condition detected
+[19:23:29][I][i2c_sniffer:058]: Stop condition detected
+[19:23:29][I][i2c_sniffer:048]: Start condition detected
+[19:23:29][I][i2c_sniffer:058]: Stop condition detected
+[19:23:29][I][i2c_sniffer:058]: Stop condition detected
+[19:23:29][I][i2c_sniffer:058]: Stop condition detected
+[19:23:30][I][i2c_sniffer:048]: Start condition detected
+[19:23:31][I][i2c_sniffer:048]: Start condition detected
+[19:23:31][I][i2c_sniffer:058]: Stop condition detected
+[19:23:31][I][i2c_sniffer:058]: Stop condition detected
+[19:23:31][I][i2c_sniffer:048]: Start condition detected
+[19:23:32][I][i2c_sniffer:058]: Stop condition detected
+[19:23:32][I][i2c_sniffer:058]: Stop condition detected
+[19:23:34][I][i2c_sniffer:058]: Stop condition detected
+[19:23:34][I][i2c_sniffer:048]: Start condition detected
+[19:23:34][I][i2c_sniffer:058]: Stop condition detected
+[19:23:35][I][i2c_sniffer:058]: Stop condition detected
+[19:23:35][I][i2c_sniffer:048]: Start condition detected
+[19:23:35][I][i2c_sniffer:058]: Stop condition detected
+[19:23:36][I][i2c_sniffer:048]: Start condition detected
+[19:23:36][I][i2c_sniffer:058]: Stop condition detected
+[19:23:37][I][i2c_sniffer:048]: Start condition detected
+[19:23:37][I][i2c_sniffer:058]: Stop condition detected
+[19:23:38][I][i2c_sniffer:048]: Start condition detected
+[19:23:38][I][i2c_sniffer:058]: Stop condition detected
+[19:23:38][I][i2c_sniffer:048]: Start condition detected
+[19:23:38][I][i2c_sniffer:048]: Start condition detected
+[19:23:38][I][i2c_sniffer:058]: Stop condition detected
+[19:23:38][I][i2c_sniffer:058]: Stop condition detected
+[19:23:39][I][i2c_sniffer:048]: Start condition detected
+[19:23:39][I][i2c_sniffer:058]: Stop condition detected
+[19:23:39][I][i2c_sniffer:048]: Start condition detected
+[19:23:39][I][i2c_sniffer:058]: Stop condition detected
+[19:23:40][I][i2c_sniffer:058]: Stop condition detected
+[19:23:40][I][i2c_sniffer:048]: Start condition detected
+[19:23:40][I][i2c_sniffer:058]: Stop condition detected
+[19:23:40][I][i2c_sniffer:048]: Start condition detected
+[19:23:40][I][i2c_sniffer:058]: Stop condition detected
+[19:23:40][I][i2c_sniffer:058]: Stop condition detected
+[19:23:41][I][i2c_sniffer:048]: Start condition detected
+[19:23:41][I][i2c_sniffer:058]: Stop condition detected
+[19:23:41][I][i2c_sniffer:058]: Stop condition detected
+[19:23:41][I][i2c_sniffer:048]: Start condition detected
+[19:23:41][I][i2c_sniffer:058]: Stop condition detected
+[19:23:41][I][i2c_sniffer:058]: Stop condition detected
+[19:23:41][I][i2c_sniffer:048]: Start condition detected
+[19:23:41][I][i2c_sniffer:058]: Stop condition detected
+[19:23:42][I][i2c_sniffer:048]: Start condition detected
+[19:23:42][I][i2c_sniffer:058]: Stop condition detected
+[19:23:43][I][i2c_sniffer:048]: Start condition detected
+[19:23:43][I][i2c_sniffer:058]: Stop condition detected
+[19:23:43][I][i2c_sniffer:048]: Start condition detected
+[19:23:43][I][i2c_sniffer:058]: Stop condition detected
+[19:23:43][I][i2c_sniffer:048]: Start condition detected
+[19:23:43][I][i2c_sniffer:058]: Stop condition detected
+[19:23:43][I][i2c_sniffer:048]: Start condition detected
+[19:23:43][I][i2c_sniffer:058]: Stop condition detected
+[19:23:44][I][i2c_sniffer:058]: Stop condition detected
+[19:23:45][I][i2c_sniffer:048]: Start condition detected
+[19:23:45][I][i2c_sniffer:058]: Stop condition detected
+[19:23:46][I][i2c_sniffer:058]: Stop condition detected
+[19:23:46][I][i2c_sniffer:058]: Stop condition detected
+[19:23:46][I][i2c_sniffer:048]: Start condition detected
+[19:23:46][I][i2c_sniffer:058]: Stop condition detected
+[19:23:46][I][i2c_sniffer:048]: Start condition detected
+[19:23:46][I][i2c_sniffer:058]: Stop condition detected
+[19:23:47][I][i2c_sniffer:048]: Start condition detected
+[19:23:47][I][i2c_sniffer:058]: Stop condition detected
+[19:23:47][I][i2c_sniffer:048]: Start condition detected
+[19:23:47][I][i2c_sniffer:058]: Stop condition detected
+[19:23:47][I][i2c_sniffer:048]: Start condition detected
+[19:23:47][I][i2c_sniffer:058]: Stop condition detected
+[19:23:47][I][safe_mode:041]: Boot seems successful; resetting boot loop counter
+[19:23:47][D][esp32.preferences:114]: Saving 1 preferences to flash...
+[19:23:47][D][esp32.preferences:143]: Saving 1 preferences to flash: 0 cached, 1 written, 0 failed
+[19:23:48][I][i2c_sniffer:058]: Stop condition detected
+[19:23:49][I][i2c_sniffer:048]: Start condition detected
+[19:23:49][I][i2c_sniffer:058]: Stop condition detected
+[19:23:49][I][i2c_sniffer:048]: Start condition detected
+[19:23:49][I][i2c_sniffer:058]: Stop condition detected
+[19:23:49][I][i2c_sniffer:058]: Stop condition detected
+[19:23:50][I][i2c_sniffer:048]: Start condition detected
+[19:23:50][I][i2c_sniffer:058]: Stop condition detected
+[19:23:50][I][i2c_sniffer:048]: Start condition detected
+[19:23:50][I][i2c_sniffer:058]: Stop condition detected
+[19:23:51][I][i2c_sniffer:048]: Start condition detected
+[19:23:51][I][i2c_sniffer:048]: Start condition detected
+[19:23:51][I][i2c_sniffer:058]: Stop condition detected
+[19:23:52][I][i2c_sniffer:048]: Start condition detected
+[19:23:52][I][i2c_sniffer:058]: Stop condition detected
+[19:23:52][I][i2c_sniffer:048]: Start condition detected
+[19:23:52][I][i2c_sniffer:058]: Stop condition detected
+[19:23:53][I][i2c_sniffer:058]: Stop condition detected
+[19:23:53][I][i2c_sniffer:048]: Start condition detected
+[19:23:53][I][i2c_sniffer:058]: Stop condition detected
+[19:23:53][I][i2c_sniffer:048]: Start condition detected
+[19:23:53][I][i2c_sniffer:058]: Stop condition detected
+[19:23:54][I][i2c_sniffer:048]: Start condition detected
+[19:23:54][I][i2c_sniffer:058]: Stop condition detected
+[19:23:54][I][i2c_sniffer:048]: Start condition detected
+[19:23:54][I][i2c_sniffer:058]: Stop condition detected
+[19:23:54][I][i2c_sniffer:048]: Start condition detected
+[19:23:54][I][i2c_sniffer:058]: Stop condition detected
+[19:23:54][I][i2c_sniffer:048]: Start condition detected
+[19:23:54][I][i2c_sniffer:058]: Stop condition detected
+[19:23:54][I][i2c_sniffer:048]: Start condition detected
+[19:23:54][I][i2c_sniffer:058]: Stop condition detected
+[19:23:55][I][i2c_sniffer:058]: Stop condition detected
+[19:23:55][I][i2c_sniffer:058]: Stop condition detected
+[19:23:56][I][i2c_sniffer:058]: Stop condition detected
+[19:23:56][I][i2c_sniffer:058]: Stop condition detected
+[19:23:56][I][i2c_sniffer:058]: Stop condition detected
+[19:23:57][I][i2c_sniffer:048]: Start condition detected
+[19:23:57][I][i2c_sniffer:058]: Stop condition detected
+[19:23:57][I][i2c_sniffer:048]: Start condition detected
+[19:23:57][I][i2c_sniffer:058]: Stop condition detected
+[19:23:57][I][i2c_sniffer:048]: Start condition detected
+[19:23:57][I][i2c_sniffer:058]: Stop condition detected
+[19:23:57][I][i2c_sniffer:048]: Start condition detected
+[19:23:57][I][i2c_sniffer:058]: Stop condition detected
+[19:23:57][I][i2c_sniffer:048]: Start condition detected
+[19:23:57][I][i2c_sniffer:058]: Stop condition detected
+[19:23:58][I][i2c_sniffer:048]: Start condition detected
+[19:23:58][I][i2c_sniffer:058]: Stop condition detected
+[19:23:58][I][i2c_sniffer:058]: Stop condition detected
+[19:23:58][I][i2c_sniffer:058]: Stop condition detected
+[19:23:58][I][i2c_sniffer:048]: Start condition detected
+[19:23:58][I][i2c_sniffer:058]: Stop condition detected
+[19:23:58][I][i2c_sniffer:048]: Start condition detected
+[19:23:58][I][i2c_sniffer:058]: Stop condition detected
+[19:23:59][I][i2c_sniffer:048]: Start condition detected
+[19:23:59][I][i2c_sniffer:058]: Stop condition detected
+[19:24:02][I][i2c_sniffer:048]: Start condition detected
+[19:24:02][I][i2c_sniffer:058]: Stop condition detected
+[19:24:03][I][i2c_sniffer:058]: Stop condition detected
+[19:24:03][I][i2c_sniffer:048]: Start condition detected
+[19:24:03][I][i2c_sniffer:058]: Stop condition detected
+[19:24:04][I][i2c_sniffer:048]: Start condition detected
+[19:24:04][I][i2c_sniffer:058]: Stop condition detected
+[19:24:04][I][i2c_sniffer:048]: Start condition detected
+[19:24:04][I][i2c_sniffer:058]: Stop condition detected
+[19:24:05][I][i2c_sniffer:058]: Stop condition detected
+[19:24:05][I][i2c_sniffer:058]: Stop condition detected
+[19:24:06][I][i2c_sniffer:048]: Start condition detected
+[19:24:06][I][i2c_sniffer:058]: Stop condition detected
+[19:24:06][I][i2c_sniffer:058]: Stop condition detected
+[19:24:06][I][i2c_sniffer:048]: Start condition detected
+[19:24:06][I][i2c_sniffer:058]: Stop condition detected
+[19:24:07][I][i2c_sniffer:048]: Start condition detected
+[19:24:07][I][i2c_sniffer:058]: Stop condition detected
+[19:24:07][I][i2c_sniffer:058]: Stop condition detected
+[19:24:08][I][i2c_sniffer:058]: Stop condition detected
+[19:24:09][I][i2c_sniffer:048]: Start condition detected
+[19:24:09][I][i2c_sniffer:058]: Stop condition detected
+[19:24:09][I][i2c_sniffer:058]: Stop condition detected
+[19:24:09][I][i2c_sniffer:048]: Start condition detected
+[19:24:09][I][i2c_sniffer:058]: Stop condition detected
+[19:24:09][I][i2c_sniffer:048]: Start condition detected
+[19:24:09][I][i2c_sniffer:058]: Stop condition detected
+[19:24:11][I][i2c_sniffer:048]: Start condition detected
+[19:24:11][I][i2c_sniffer:058]: Stop condition detected
+[19:24:11][I][i2c_sniffer:048]: Start condition detected
+[19:24:11][I][i2c_sniffer:058]: Stop condition detected
+[19:24:12][I][i2c_sniffer:048]: Start condition detected
+[19:24:12][I][i2c_sniffer:058]: Stop condition detected
+[19:24:12][I][i2c_sniffer:058]: Stop condition detected
+[19:24:13][I][i2c_sniffer:048]: Start condition detected
+[19:24:13][I][i2c_sniffer:058]: Stop condition detected
+[19:24:13][I][i2c_sniffer:058]: Stop condition detected
+[19:24:14][I][i2c_sniffer:048]: Start condition detected
+[19:24:14][I][i2c_sniffer:058]: Stop condition detected
+[19:24:14][I][i2c_sniffer:048]: Start condition detected
+[19:24:14][I][i2c_sniffer:058]: Stop condition detected
+[19:24:14][I][i2c_sniffer:048]: Start condition detected
+[19:24:14][I][i2c_sniffer:058]: Stop condition detected
+[19:24:15][I][i2c_sniffer:048]: Start condition detected
+[19:24:15][I][i2c_sniffer:058]: Stop condition detected
+[19:24:15][I][i2c_sniffer:048]: Start condition detected
+[19:24:15][I][i2c_sniffer:058]: Stop condition detected
+[19:24:16][I][i2c_sniffer:058]: Stop condition detected
+[19:24:16][I][i2c_sniffer:048]: Start condition detected
+[19:24:16][I][i2c_sniffer:058]: Stop condition detected
+[19:24:17][I][i2c_sniffer:048]: Start condition detected
+[19:24:17][I][i2c_sniffer:058]: Stop condition detected
+[19:24:17][I][i2c_sniffer:058]: Stop condition detected
+[19:24:17][I][i2c_sniffer:048]: Start condition detected
+[19:24:17][I][i2c_sniffer:058]: Stop condition detected
+[19:24:17][I][i2c_sniffer:058]: Stop condition detected
+[19:24:17][I][i2c_sniffer:048]: Start condition detected
+[19:24:18][I][i2c_sniffer:048]: Start condition detected
+[19:24:18][I][i2c_sniffer:058]: Stop condition detected
+[19:24:18][I][i2c_sniffer:048]: Start condition detected
+[19:24:18][I][i2c_sniffer:084]: Address byte: 0x7F (read (master ← slave))
+[19:24:18][I][i2c_sniffer:069]: NACK received
+[19:24:18][I][i2c_sniffer:058]: Stop condition detected
+[19:24:19][I][i2c_sniffer:058]: Stop condition detected
+[19:24:19][I][i2c_sniffer:058]: Stop condition detected
+[19:24:20][I][i2c_sniffer:048]: Start condition detected
+[19:24:20][I][i2c_sniffer:058]: Stop condition detected
+[19:24:21][I][i2c_sniffer:048]: Start condition detected
+[19:24:21][I][i2c_sniffer:058]: Stop condition detected
+[19:24:21][I][i2c_sniffer:048]: Start condition detected
+[19:24:21][I][i2c_sniffer:058]: Stop condition detected
+[19:24:21][I][i2c_sniffer:048]: Start condition detected
+[19:24:21][I][i2c_sniffer:058]: Stop condition detected
+[19:24:22][I][i2c_sniffer:058]: Stop condition detected
+[19:24:22][I][i2c_sniffer:048]: Start condition detected
+[19:24:22][I][i2c_sniffer:058]: Stop condition detected
+[19:24:22][I][i2c_sniffer:058]: Stop condition detected
+[19:24:22][I][i2c_sniffer:058]: Stop condition detected
+[19:24:23][I][i2c_sniffer:048]: Start condition detected
+[19:24:23][I][i2c_sniffer:058]: Stop condition detected
+[19:24:23][I][i2c_sniffer:058]: Stop condition detected
+[19:24:23][I][i2c_sniffer:058]: Stop condition detected
+[19:24:23][I][i2c_sniffer:048]: Start condition detected
+[19:24:23][I][i2c_sniffer:058]: Stop condition detected
+[19:24:24][I][i2c_sniffer:058]: Stop condition detected
+[19:24:25][I][i2c_sniffer:058]: Stop condition detected
+[19:24:26][I][i2c_sniffer:048]: Start condition detected
+[19:24:26][I][i2c_sniffer:058]: Stop condition detected
+[19:24:26][I][i2c_sniffer:048]: Start condition detected
+[19:24:26][I][i2c_sniffer:058]: Stop condition detected
+[19:24:27][I][i2c_sniffer:058]: Stop condition detected
+[19:24:27][I][i2c_sniffer:058]: Stop condition detected
+[19:24:27][I][i2c_sniffer:048]: Start condition detected
+[19:24:27][I][i2c_sniffer:058]: Stop condition detected
+[19:24:28][I][i2c_sniffer:048]: Start condition detected
+[19:24:28][I][i2c_sniffer:058]: Stop condition detected
+[19:24:28][I][i2c_sniffer:058]: Stop condition detected
+[19:24:28][I][i2c_sniffer:058]: Stop condition detected
+[19:24:29][I][i2c_sniffer:058]: Stop condition detected
+[19:24:30][I][i2c_sniffer:048]: Start condition detected
+[19:24:30][I][i2c_sniffer:058]: Stop condition detected
+[19:24:31][I][i2c_sniffer:048]: Start condition detected
+[19:24:31][I][i2c_sniffer:058]: Stop condition detected
+[19:24:31][I][i2c_sniffer:058]: Stop condition detected
+[19:24:31][I][i2c_sniffer:048]: Start condition detected
+[19:24:31][I][i2c_sniffer:058]: Stop condition detected
+[19:24:31][I][i2c_sniffer:048]: Start condition detected
+[19:24:31][I][i2c_sniffer:058]: Stop condition detected
+[19:24:32][I][i2c_sniffer:048]: Start condition detected
+[19:24:32][I][i2c_sniffer:058]: Stop condition detected
+[19:24:32][I][i2c_sniffer:048]: Start condition detected
+[19:24:32][I][i2c_sniffer:058]: Stop condition detected
+[19:24:32][I][i2c_sniffer:058]: Stop condition detected
+[19:24:32][I][i2c_sniffer:048]: Start condition detected
+[19:24:32][I][i2c_sniffer:058]: Stop condition detected
+[19:24:32][I][i2c_sniffer:048]: Start condition detected
+[19:24:32][I][i2c_sniffer:058]: Stop condition detected
+[19:24:33][I][i2c_sniffer:048]: Start condition detected
+[19:24:33][I][i2c_sniffer:058]: Stop condition detected
+[19:24:33][I][i2c_sniffer:058]: Stop condition detected
+[19:24:34][I][i2c_sniffer:048]: Start condition detected
+[19:24:34][I][i2c_sniffer:058]: Stop condition detected
+[19:24:35][I][i2c_sniffer:048]: Start condition detected
+[19:24:35][I][i2c_sniffer:058]: Stop condition detected
+[19:24:35][I][i2c_sniffer:048]: Start condition detected
+[19:24:35][I][i2c_sniffer:058]: Stop condition detected
+[19:24:36][I][i2c_sniffer:048]: Start condition detected
+[19:24:36][I][i2c_sniffer:058]: Stop condition detected
+[19:24:36][I][i2c_sniffer:048]: Start condition detected
+[19:24:37][I][i2c_sniffer:058]: Stop condition detected
+[19:24:37][I][i2c_sniffer:048]: Start condition detected
+[19:24:37][I][i2c_sniffer:058]: Stop condition detected
+[19:24:37][I][i2c_sniffer:048]: Start condition detected
+[19:24:37][I][i2c_sniffer:058]: Stop condition detected
