@@ -4,6 +4,7 @@
 #include "esphome/core/application.h"
 #include "esphome/components/text_sensor/text_sensor.h"
 #include <Arduino.h>
+#include <string>
 
 namespace esphome {
 namespace i2c_sniffer {
