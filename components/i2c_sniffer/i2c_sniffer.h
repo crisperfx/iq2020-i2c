@@ -50,23 +50,23 @@ class I2CSniffer : public Component {
   std::deque<std::string> buffer_;
   text_sensor::TextSensor *buffer_sensor_{nullptr};
 
-  // 🔽 Nieuw: bitlogging met timing
+  // Bitlogging met timing info
   uint32_t last_scl_rise_us_ = 0;
   std::string bitstream_;
   bool start_detected_ = false;
   bool stop_detected_ = false;
 
-  // Nieuw: functie om bits met timing te loggen
+  // Optioneel: functie om bits met timing te loggen
   void log_bit(bool bit) {
     uint32_t now = micros();
     uint32_t delta = now - last_scl_rise_us_;
     last_scl_rise_us_ = now;
 
-    char buf[16];
+    char buf[24];
     snprintf(buf, sizeof(buf), "%d:Δ%lu ", bit ? 1 : 0, (unsigned long) delta);
     bitstream_ += buf;
 
-    // Beperk grootte van bitstream om overloop te voorkomen
+    // Beperk grootte van bitstream om buffer overflow te voorkomen
     if (bitstream_.length() > 256)
       bitstream_.erase(0, bitstream_.length() - 256);
   }
