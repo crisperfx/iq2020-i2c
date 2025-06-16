@@ -96,6 +96,7 @@ void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
 
+  // Detecteer startconditie
   if (prev_sda_ && !sda && scl) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving_ = true;
@@ -108,6 +109,7 @@ void I2CSniffer::loop() {
     last_scl_rise_us_ = micros();
   }
 
+  // Detecteer stopconditie
   if (!prev_sda_ && sda && scl) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving_ = false;
@@ -115,7 +117,16 @@ void I2CSniffer::loop() {
     bitstream_ += " [STOP]\n";
   }
 
+  // Alleen sample bij stabiele SCL rising edge
   if (receiving_ && !prev_scl_ && scl) {
+    if (!stable_read(scl_pin_)) {
+      prev_sda_ = sda;
+      prev_scl_ = scl;
+      return;  // Onstabiele flank, negeer
+    }
+
+    delayMicroseconds(2);  // kleine vertraging om SDA te stabiliseren
+
     log_bit(sda);
 
     if (ack_bit_expected_) {
@@ -139,9 +150,14 @@ void I2CSniffer::loop() {
           ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, rw ? "read (master ← slave)" : "write (master → slave)");
           receiving_address_ = false;
 
-          if (detected_addresses_.find(address) == detected_addresses_.end()) {
-            detected_addresses_.insert(address);
-            ESP_LOGW(TAG, "🎯 Detected new I2C address: 0x%02X", address);
+          // Filter op ongeldige of ruis-adressen
+          if (address != 0x00 && address != 0x3F && address != 0x7F && address <= 0x77) {
+            if (detected_addresses_.find(address) == detected_addresses_.end()) {
+              detected_addresses_.insert(address);
+              ESP_LOGW(TAG, "🎯 Detected new I2C address: 0x%02X", address);
+            }
+          } else {
+            ESP_LOGD(TAG, "Adres 0x%02X genegeerd (mogelijk ruis)", address);
           }
         } else {
           ESP_LOGI(TAG, "Data byte: 0x%02X", byte_buf_);
@@ -151,6 +167,14 @@ void I2CSniffer::loop() {
     }
   }
 
+  // Log om de seconde de status van SDA/SCL (detectie van floating lijnen)
+  static uint32_t last_check = 0;
+  if (millis() - last_check > 1000) {
+    last_check = millis();
+    ESP_LOGD(TAG, "Lijnstatus: SDA=%d, SCL=%d", sda, scl);
+  }
+
+  // Publiceer buffer elke 2 seconden
   static uint32_t last_publish = 0;
   if (millis() - last_publish > 2000) {
     last_publish = millis();
@@ -160,6 +184,3 @@ void I2CSniffer::loop() {
   prev_sda_ = sda;
   prev_scl_ = scl;
 }
-
-}  // namespace i2c_sniffer
-}  // namespace esphome
