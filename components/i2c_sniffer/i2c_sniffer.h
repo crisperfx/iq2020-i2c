@@ -3,6 +3,7 @@
 #include "esphome/core/component.h"
 #include "esphome/components/text_sensor/text_sensor.h"
 #include <deque>
+#include <set>
 #include <string>
 
 namespace esphome {
@@ -46,17 +47,18 @@ class I2CSniffer : public Component {
   uint8_t bit_count_ = 0;
   uint8_t byte_buf_ = 0;
 
-  // Buffer voor hex bytes
   std::deque<std::string> buffer_;
   text_sensor::TextSensor *buffer_sensor_{nullptr};
 
-  // Bitlogging met timing info
+  // Bitlogging
   uint32_t last_scl_rise_us_ = 0;
   std::string bitstream_;
   bool start_detected_ = false;
   bool stop_detected_ = false;
 
-  // Optioneel: functie om bits met timing te loggen
+  // I2C adresscanner
+  std::set<uint8_t> detected_addresses_;
+
   void log_bit(bool bit) {
     uint32_t now = micros();
     uint32_t delta = now - last_scl_rise_us_;
@@ -66,10 +68,14 @@ class I2CSniffer : public Component {
     snprintf(buf, sizeof(buf), "%d:Δ%lu ", bit ? 1 : 0, (unsigned long) delta);
     bitstream_ += buf;
 
-    // Beperk grootte van bitstream om buffer overflow te voorkomen
     if (bitstream_.length() > 256)
       bitstream_.erase(0, bitstream_.length() - 256);
   }
+
+  void handle_byte(uint8_t byte_value, bool is_address);
+  void handle_start_condition();
+  void handle_stop_condition();
+  void publish_detected_addresses();
 };
 
 void register_i2c_sniffer(int sda_pin, int scl_pin, int log_level = 3, int buffer_size = 16);
