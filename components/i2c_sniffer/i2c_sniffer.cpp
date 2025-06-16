@@ -51,6 +51,14 @@ void I2CSniffer::setup() {
   prev_sda_ = digitalRead(sda_pin_);
   prev_scl_ = digitalRead(scl_pin_);
   last_scl_rise_us_ = micros();
+
+  receiving_ = false;
+  receiving_address_ = false;
+  ack_bit_expected_ = false;
+  bit_count_ = 0;
+  byte_buf_ = 0;
+  bitstream_.clear();
+  buffer_.clear();
 }
 
 void I2CSniffer::publish_buffer() {
@@ -73,11 +81,15 @@ void I2CSniffer::publish_buffer() {
     bitstream_.clear();
   }
 
+  // Limiteer lengte buffer string
   if (buffer_str.length() > 512)
     buffer_str = buffer_str.substr(buffer_str.length() - 512);
 
   this->buffer_sensor_->publish_state(buffer_str);
   ESP_LOGI(TAG, "Publishing buffer: %s", buffer_str.c_str());
+
+  // Optioneel clear buffer na publiceren (kan ook later)
+  buffer_.clear();
 }
 
 void I2CSniffer::set_buffer_sensor(text_sensor::TextSensor *sensor) {
@@ -88,7 +100,7 @@ void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
 
-  // Detecteer startconditie
+  // Detecteer startconditie (SDA valt terwijl SCL hoog)
   if (prev_sda_ && !sda && scl) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving_ = true;
@@ -96,16 +108,14 @@ void I2CSniffer::loop() {
     bit_count_ = 0;
     byte_buf_ = 0;
     ack_bit_expected_ = false;
-    start_detected_ = true;
     bitstream_ += "[START] ";
     last_scl_rise_us_ = micros();
   }
 
-  // Detecteer stopconditie
+  // Detecteer stopconditie (SDA stijgt terwijl SCL hoog)
   if (!prev_sda_ && sda && scl) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving_ = false;
-    stop_detected_ = true;
     bitstream_ += " [STOP]\n";
   }
 
@@ -114,6 +124,7 @@ void I2CSniffer::loop() {
     uint32_t now = micros();
     uint32_t delta = now - last_scl_rise_us_;
     last_scl_rise_us_ = now;
+
     bitstream_ += (sda ? "1" : "0");
     bitstream_ += ":Δ" + std::to_string(delta) + " ";
 
@@ -150,6 +161,7 @@ void I2CSniffer::loop() {
     }
   }
 
+  // Periodiek publiceren, bv. elke 2 seconden
   static uint32_t last_publish = 0;
   if (millis() - last_publish > 2000) {
     last_publish = millis();
