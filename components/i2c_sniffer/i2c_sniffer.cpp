@@ -184,3 +184,5 @@ void I2CSniffer::loop() {
   prev_sda_ = sda;
   prev_scl_ = scl;
 }
+}  // namespace i2c_sniffer
+}  // namespace esphome
