@@ -50,6 +50,7 @@ void I2CSniffer::setup() {
 
   prev_sda_ = digitalRead(sda_pin_);
   prev_scl_ = digitalRead(scl_pin_);
+  last_scl_rise_us_ = micros();
 }
 
 void I2CSniffer::publish_buffer() {
@@ -57,36 +58,37 @@ void I2CSniffer::publish_buffer() {
     return;
 
   std::string buffer_str;
-  // Combineer alle hex strings in één regel, gescheiden door spaties
   for (size_t i = 0; i < this->buffer_.size(); ++i) {
-    // Verwijder de "0x" prefix als die er is
     std::string hex_val = this->buffer_[i];
     if (hex_val.compare(0, 2, "0x") == 0 || hex_val.compare(0, 2, "0X") == 0) {
       hex_val = hex_val.substr(2);
     }
     buffer_str += hex_val;
-
     if (i != this->buffer_.size() - 1)
       buffer_str += " ";
   }
 
-  // Hou max 512 chars (laatste 512 tekens)
+  if (!bitstream_.empty()) {
+    buffer_str += " | Bits: " + bitstream_;
+    bitstream_.clear();
+  }
+
   if (buffer_str.length() > 512)
     buffer_str = buffer_str.substr(buffer_str.length() - 512);
 
   this->buffer_sensor_->publish_state(buffer_str);
-
   ESP_LOGI(TAG, "Publishing buffer: %s", buffer_str.c_str());
 }
 
 void I2CSniffer::set_buffer_sensor(text_sensor::TextSensor *sensor) {
   this->buffer_sensor_ = sensor;
 }
+
 void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
 
-  // Detecteer startconditie: SDA gaat laag terwijl SCL hoog is
+  // Detecteer startconditie
   if (prev_sda_ && !sda && scl) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving_ = true;
@@ -94,18 +96,28 @@ void I2CSniffer::loop() {
     bit_count_ = 0;
     byte_buf_ = 0;
     ack_bit_expected_ = false;
+    start_detected_ = true;
+    bitstream_ += "[START] ";
+    last_scl_rise_us_ = micros();
   }
 
-  // Detecteer stopconditie: SDA gaat hoog terwijl SCL hoog is
+  // Detecteer stopconditie
   if (!prev_sda_ && sda && scl) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving_ = false;
+    stop_detected_ = true;
+    bitstream_ += " [STOP]\n";
   }
 
-  // Lees bits op stijgende flank SCL
+  // Bits loggen op stijgende SCL-flank
   if (receiving_ && !prev_scl_ && scl) {
+    uint32_t now = micros();
+    uint32_t delta = now - last_scl_rise_us_;
+    last_scl_rise_us_ = now;
+    bitstream_ += (sda ? "1" : "0");
+    bitstream_ += ":Δ" + std::to_string(delta) + " ";
+
     if (ack_bit_expected_) {
-      // ACK/NACK bit
       if (sda == 0) {
         ESP_LOGD(TAG, "ACK received");
       } else {
@@ -115,18 +127,15 @@ void I2CSniffer::loop() {
       bit_count_ = 0;
       byte_buf_ = 0;
     } else {
-      // Bits shiften in byte buffer
       byte_buf_ = (byte_buf_ << 1) | (sda ? 1 : 0);
       bit_count_++;
 
       if (bit_count_ == 8) {
-        // Voeg byte als hex string toe aan buffer
         std::string byte_str = "0x" + to_hex(byte_buf_);
         buffer_.push_back(byte_str);
 
-        // Beperk buffer grootte
         if (buffer_.size() > max_buffer_size_)
-          buffer_.pop_front();  // net iets netter voor deque
+          buffer_.pop_front();
 
         if (receiving_address_) {
           uint8_t address = byte_buf_ >> 1;
@@ -141,7 +150,6 @@ void I2CSniffer::loop() {
     }
   }
 
-  // Publiceer buffer elke 2 seconden
   static uint32_t last_publish = 0;
   if (millis() - last_publish > 2000) {
     last_publish = millis();
