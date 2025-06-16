@@ -6,16 +6,16 @@
 #include <Arduino.h>
 #include <string>
 #include <vector>
+#include <set>
 
 namespace esphome {
 namespace i2c_sniffer {
 
-// Globale pointer declareren
+// Globale pointer
 I2CSniffer *global_sniffer = nullptr;
 
 static const char *const TAG = "i2c_sniffer";
 
-// Helper: converteer byte naar hex string
 static std::string to_hex(uint8_t byte) {
   const char* hex_chars = "0123456789ABCDEF";
   std::string hex;
@@ -73,6 +73,14 @@ void I2CSniffer::publish_buffer() {
     bitstream_.clear();
   }
 
+  // Voeg gedetecteerde adressen toe
+  if (!detected_addresses_.empty()) {
+    buffer_str += " | Addr:";
+    for (uint8_t addr : detected_addresses_) {
+      buffer_str += " 0x" + to_hex(addr);
+    }
+  }
+
   if (buffer_str.length() > 512)
     buffer_str = buffer_str.substr(buffer_str.length() - 512);
 
@@ -88,7 +96,6 @@ void I2CSniffer::loop() {
   bool sda = digitalRead(sda_pin_);
   bool scl = digitalRead(scl_pin_);
 
-  // Detecteer startconditie (SDA valt terwijl SCL hoog is)
   if (prev_sda_ && !sda && scl) {
     ESP_LOGI(TAG, "Start condition detected");
     receiving_ = true;
@@ -97,31 +104,22 @@ void I2CSniffer::loop() {
     byte_buf_ = 0;
     ack_bit_expected_ = false;
     start_detected_ = true;
-    // Log start condition in bitstream
     bitstream_ += "[START] ";
     last_scl_rise_us_ = micros();
   }
 
-  // Detecteer stopconditie (SDA stijgt terwijl SCL hoog is)
   if (!prev_sda_ && sda && scl) {
     ESP_LOGI(TAG, "Stop condition detected");
     receiving_ = false;
     stop_detected_ = true;
-    // Log stop condition in bitstream
     bitstream_ += " [STOP]\n";
   }
 
-  // Bits loggen op stijgende SCL-flank
   if (receiving_ && !prev_scl_ && scl) {
-    // Gebruik nu log_bit() om bit met timing te loggen
     log_bit(sda);
 
     if (ack_bit_expected_) {
-      if (sda == 0) {
-        ESP_LOGD(TAG, "ACK received");
-      } else {
-        ESP_LOGD(TAG, "NACK received");
-      }
+      ESP_LOGD(TAG, sda == 0 ? "ACK received" : "NACK received");
       ack_bit_expected_ = false;
       bit_count_ = 0;
       byte_buf_ = 0;
@@ -132,7 +130,6 @@ void I2CSniffer::loop() {
       if (bit_count_ == 8) {
         std::string byte_str = "0x" + to_hex(byte_buf_);
         buffer_.push_back(byte_str);
-
         if (buffer_.size() > max_buffer_size_)
           buffer_.pop_front();
 
@@ -141,6 +138,11 @@ void I2CSniffer::loop() {
           bool rw = byte_buf_ & 1;
           ESP_LOGI(TAG, "Address byte: 0x%02X (%s)", address, rw ? "read (master ← slave)" : "write (master → slave)");
           receiving_address_ = false;
+
+          if (detected_addresses_.find(address) == detected_addresses_.end()) {
+            detected_addresses_.insert(address);
+            ESP_LOGW(TAG, "🎯 Detected new I2C address: 0x%02X", address);
+          }
         } else {
           ESP_LOGI(TAG, "Data byte: 0x%02X", byte_buf_);
         }
